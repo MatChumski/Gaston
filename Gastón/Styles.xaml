@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="BgColorMain">#557E47</Color>
+    
+    <Color x:Key="BtnColorMain">#436338</Color>
+    <Color x:Key="BtnColorAux">#767676</Color>
+    
+    <Color x:Key="EntryColorMain">#557E47</Color>
+
+    <!-- MAIN BUTTON -->
+    <Style TargetType="Button" x:Key="BtnMain">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnColorMain}"/>
+        <Setter Property="FontFamily" Value="SenBold"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!-- CANCEL BUTTON -->
+    <Style TargetType="Button" x:Key="BtnCancel">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnColorAux}"/>
+        <Setter Property="FontFamily" Value="SenBold"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!-- FRAME TO CONTAIN ENTRY WITH ROUND CORNERS -->
+    <Style TargetType="Frame" x:Key="EntryFrame">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+
+    <!-- MAIN ENTRY -->
+    <Style TargetType="Entry" x:Key="EntryMain">
+        <Setter Property="BackgroundColor" Value="{StaticResource EntryColorMain}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="PlaceholderColor" Value="White"/>
+
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="FontFamily" Value="SenRegular"/>
+
+    </Style>
+        
+</ResourceDictionary>
