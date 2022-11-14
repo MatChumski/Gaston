@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:local="clr-namespace:Gastón.Views"
+            x:Class="Gastón.Views.MainView"
+            NavigationPage.HasNavigationBar="True"
+            NavigationPage.TitleIconImageSource="logo.png"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="{StaticResource BgColorMain}"
+            SelectedTabColor="{StaticResource BgColorDark}"
+            UnselectedTabColor="White"
+            >
+  <!--Pages can be added as references or inline-->
+    <local:NewExpenseView Title="New expense"/>
+    <local:HomeView Title="Home"/>
+    <local:ExpenseListView Title="Expense List"/>
+    <local:ConfigView Title="Options"/>
+</TabbedPage>

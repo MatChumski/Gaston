@@ -1,5 +1,4 @@
-﻿using Gastón.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Gastón.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Signup : ContentPage
+    public partial class HomeView : ContentPage
     {
-        public Signup()
+        public HomeView()
         {
             InitializeComponent();
-            BindingContext = new SignupViewModel();
-        }
-
-        async void NavCancel(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync(true);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gastón.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Gastón.Views
         public Login()
         {
             InitializeComponent();
+            BindingContext = new LoginViewModel();
         }
 
         private async void NavToSignup(object sender, EventArgs e)

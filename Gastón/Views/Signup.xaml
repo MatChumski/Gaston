@@ -6,36 +6,36 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <FlexLayout 
-            Direction="Column" 
-            BackgroundColor="{StaticResource BgColorMain}">
+                Direction="Column" 
+                BackgroundColor="{StaticResource BgColorMain}">
 
                 <StackLayout 
-                VerticalOptions="CenterAndExpand"
-                HeightRequest="250"
-                MinimumHeightRequest="200">
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="250"
+                    MinimumHeightRequest="200">
 
-                    <Image 
-                    Source="logo.png" 
-                    WidthRequest="160"
-                    VerticalOptions="CenterAndExpand"/>
+                    <Image                     
+                        Source="logo.png" 
+                        WidthRequest="160"
+                        VerticalOptions="CenterAndExpand"/>
 
                 </StackLayout>
 
                 <Frame 
-                CornerRadius="90" 
-                BackgroundColor="{StaticResource BgColorMain}"
-                HasShadow="False"
-                Padding="11, 11, 11, 11">
+                    CornerRadius="90" 
+                    BackgroundColor="{StaticResource BgColorMain}"
+                    HasShadow="False"
+                    Padding="11, 11, 11, 11">
 
                     <Frame
-                    CornerRadius="90"
-                    HasShadow="False">
+                        CornerRadius="90"
+                        HasShadow="False">
 
                         <StackLayout 
-                        HorizontalOptions="FillAndExpand"
-                        Padding="0, 15, 0, 0"
-                        HeightRequest="360"
-                        BackgroundColor="White">
+                            HorizontalOptions="FillAndExpand"
+                            Padding="0, 15, 0, 0"
+                            HeightRequest="360"
+                            BackgroundColor="White">
 
                             <Frame 
                                 Style="{StaticResource EntryFrame}" 
@@ -44,6 +44,8 @@
 
                                 <Entry 
                                     Placeholder="Username"
+                                    x:Name="EntryUsername"
+                                    Text="{Binding UsernameEntry, Mode=TwoWay}"
                                     Style="{StaticResource EntryMain}"/>
 
                             </Frame>
@@ -55,6 +57,8 @@
 
                                 <Entry 
                                     Placeholder="E-Mail"
+                                    x:Name="EntryEmail"
+                                    Text="{Binding EmailEntry, Mode=TwoWay}"
                                     Style="{StaticResource EntryMain}"/>
 
                             </Frame>
@@ -66,6 +70,9 @@
 
                                 <Entry 
                                     Placeholder="Password"
+                                    x:Name="EntryPassword"
+                                    Text="{Binding PasswordEntry, Mode=TwoWay}"
+                                    IsPassword="True"
                                     Style="{StaticResource EntryMain}"/>
 
                             </Frame>
@@ -77,6 +84,9 @@
 
                                 <Entry 
                                     Placeholder="Repeat Password"
+                                    x:Name="EntryPasswordRepeat"
+                                    Text="{Binding PasswordRepeatEntry, Mode=TwoWay}"
+                                    IsPassword="True"
                                     Style="{StaticResource EntryMain}"/>
 
                             </Frame>
@@ -97,6 +107,7 @@
             <Button
                 Style="{StaticResource BtnMain}" 
                 Text="SIGNUP"
+                Command="{Binding SignupCommand}"
                 CornerRadius="15"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="0, 0.775, 150, 50"/>

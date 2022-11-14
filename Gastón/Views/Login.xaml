@@ -6,50 +6,55 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <FlexLayout 
-            Direction="Column" 
-            BackgroundColor="{StaticResource BgColorMain}">
+                Direction="Column" 
+                BackgroundColor="{StaticResource BgColorMain}">
 
                 <StackLayout 
-                VerticalOptions="CenterAndExpand"
-                HeightRequest="250"
-                MinimumHeightRequest="200">
+                    VerticalOptions="CenterAndExpand"
+                    HeightRequest="250"
+                    MinimumHeightRequest="200">
 
                     <Image 
-                    Source="logo.png" 
-                    WidthRequest="160"
-                    VerticalOptions="CenterAndExpand"/>
+                        Source="logo.png" 
+                        WidthRequest="160"
+                        VerticalOptions="CenterAndExpand"/>
 
                 </StackLayout>
 
                 <Frame 
-                CornerRadius="90" 
-                BackgroundColor="{StaticResource BgColorMain}"
-                HasShadow="False"
-                Padding="11, 11, 11, 11">
+                    CornerRadius="90" 
+                    BackgroundColor="{StaticResource BgColorMain}"
+                    HasShadow="False"
+                    Padding="11, 11, 11, 11">
 
                     <Frame
-                    CornerRadius="90"
-                    HasShadow="False">
+                        CornerRadius="90"
+                        HasShadow="False">
 
                         <StackLayout 
-                        HorizontalOptions="FillAndExpand"
-                        Padding="0, 15, 0, 0"
-                        HeightRequest="360"
-                        BackgroundColor="White">
+                            HorizontalOptions="FillAndExpand"
+                            Padding="0, 15, 0, 0"
+                            HeightRequest="360"
+                            BackgroundColor="White">
 
                             <Frame Style="{StaticResource EntryFrame}" HorizontalOptions="CenterAndExpand" WidthRequest="300">
 
-                                <Entry 
-                            Placeholder="Username / E-Mail"
-                            Style="{StaticResource EntryMain}"/>
+                                <Entry
+                                    x:Name="EntryUserId"
+                                    Text="{Binding UserIdEntry, Mode=TwoWay}"
+                                    Placeholder="Username / E-Mail"
+                                    Style="{StaticResource EntryMain}"/>
 
                             </Frame>
 
                             <Frame Style="{StaticResource EntryFrame}" HorizontalOptions="CenterAndExpand" WidthRequest="300">
 
                                 <Entry 
-                                Placeholder="Password"
-                                Style="{StaticResource EntryMain}"/>
+                                    x:Name="EntryPassword"
+                                    Text="{Binding PasswordEntry, Mode=TwoWay}"
+                                    Placeholder="Password"
+                                    IsPassword="True"
+                                    Style="{StaticResource EntryMain}"/>
 
                             </Frame>
 
@@ -68,6 +73,8 @@
 
             <Button
                 Style="{StaticResource BtnMain}" 
+                x:Name="BtnLogin"
+                Command="{Binding LoginCommand}"
                 Text="LOGIN"
                 CornerRadius="15"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -81,7 +88,7 @@
             <Button
                 Style="{StaticResource BtnMain}" 
                 Text="SIGNUP"
-                Clicked="NavToSignup"
+                Command="{Binding NavToSignupCommand}"
                 CornerRadius="15"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 0.6, 150, 50"/>
