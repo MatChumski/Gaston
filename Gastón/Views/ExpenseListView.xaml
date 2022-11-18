@@ -1,12 +1,177 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Font_Icons="clr-namespace:Gastón.Fonts"
              x:Class="Gastón.Views.ExpenseListView">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource BgColorDark}">
-            <Label Text="Your Expenses"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <ScrollView>
+            
+            <StackLayout BackgroundColor="{StaticResource BgColorDark}" Padding="5, 0, 5, 0">
+
+                <StackLayout Style="{StaticResource StackPageTitle}">
+                
+                    <Label Text="Your Expenses"
+                           Style="{StaticResource LabelPageTitle}"/>
+                
+                </StackLayout>
+
+                <StackLayout>
+                
+                    <!--DATE RANGE-->            
+                    <FlexLayout Direction="Row" AlignItems="Center">
+                
+                        <Label Text="From"
+                               Style="{StaticResource LabelOptions}"
+                               FontSize="20"/>
+
+                        <Frame Style="{StaticResource FrameEntryOptions}"
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               WidthRequest="100"
+                               HeightRequest="35">
+
+                            <DatePicker 
+                                VerticalOptions="CenterAndExpand"
+                                Style="{StaticResource DatePickerRange}"/>
+
+                        </Frame>
+                
+                        <Label Text="to"
+                               Style="{StaticResource LabelOptions}"
+                               FontSize="20"/>
+
+                        <Frame Style="{StaticResource FrameEntryOptions}" 
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               WidthRequest="100"
+                               HeightRequest="35">
+
+                            <DatePicker 
+                                VerticalOptions="CenterAndExpand"
+                                Style="{StaticResource DatePickerRange}"/>
+
+                        </Frame>
+                    </FlexLayout>
+            
+                    <!--FILTERS-->
+                    <FlexLayout Direction="Row" AlignItems="Center">
+
+                        <Label Text="Category"
+                               Style="{StaticResource LabelOptions}"/>
+
+                        <Frame Style="{StaticResource FrameEntryOptions}"
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               WidthRequest="65"
+                               HeightRequest="35">
+
+                            <Picker x:Name="TypePicker"
+                                    Title="Select a type"
+                                    Style="{StaticResource PickerRange}"
+                                    FontSize="14">
+                                <Picker.Items>
+                                    <x:String>All</x:String>
+                                    <x:String>Food</x:String>
+                                    <x:String>Transportation</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                        </Frame>
+
+                        <Label Text="Order by"
+                               Style="{StaticResource LabelOptions}"/>
+
+                        <Frame Style="{StaticResource FrameEntryOptions}" 
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               WidthRequest="65"
+                               HeightRequest="35">
+
+                            <Picker x:Name="SortingPicker"
+                                    Title="Select a sorting parameter"
+                                    Style="{StaticResource PickerRange}"
+                                    FontSize="14"
+                                    SelectedIndex="1">
+                                <Picker.Items>
+                                    <x:String>Date</x:String>
+                                    <x:String>Amount</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                        </Frame>
+
+                        <Button Text="▼"
+                                CornerRadius="100"
+                                WidthRequest="40"
+                                HeightRequest="40"
+                                FontSize="20"
+                                Padding="0, 0, 0, 2"
+                                BackgroundColor="Transparent"
+                                FontFamily="SenBold"/>
+                    </FlexLayout>
+                
+                </StackLayout>
+
+                <Frame BackgroundColor="#436338" Style="{StaticResource FrameListCard}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="27"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <!--COLUMN 1-->
+                        <Label Text="Description"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="22"/>
+                    
+                        <Label Text="$$$$$"
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="28"/>
+                    
+                        <Label Text="Category"
+                               Grid.Column="0"
+                               Grid.Row="2"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="22"/>
+
+                        <!--COLUMN 2-->
+                        <Label Text="DD/MM/YYYY"
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               YAlign="Center"
+                               XAlign="End"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="22"/>
+                    
+                        <FlexLayout Grid.Column="1"
+                                    Grid.Row="2"
+                                    JustifyContent="End">
+                            <Button Text="{x:Static Font_Icons:Icons.Edit}" 
+                                    FontFamily="Icon"
+                                    TextColor="{StaticResource BgColorDark}"
+                                    Style="{StaticResource ButtonIcon2}"/>
+                            <Button Text="{x:Static Font_Icons:Icons.Cancel}" 
+                                    FontFamily="Icon"
+                                    TextColor="DarkRed"
+                                    Style="{StaticResource ButtonIcon2}"/>                        
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

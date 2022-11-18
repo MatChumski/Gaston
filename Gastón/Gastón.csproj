@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <None Remove="Fonts\Coneria.ttf" />
+    <None Remove="Fonts\Icon.ttf" />
+    <None Remove="Fonts\Icons.ttf" />
     <None Remove="Fonts\SenBold.ttf" />
     <None Remove="Fonts\SenExtraBold.ttf" />
     <None Remove="Fonts\SenRegular.ttf" />
@@ -19,6 +21,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Fonts\Coneria.ttf" />
+    <EmbeddedResource Include="Fonts\Icon.ttf" />
     <EmbeddedResource Include="Fonts\SenBold.ttf" />
     <EmbeddedResource Include="Fonts\SenExtraBold.ttf" />
     <EmbeddedResource Include="Fonts\SenRegular.ttf" />
@@ -27,6 +30,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -52,6 +56,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NewExpenseView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PopUps\NewCategoryPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Signup.xaml">

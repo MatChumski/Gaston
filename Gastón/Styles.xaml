@@ -100,7 +100,18 @@
         <Setter Property="HeightRequest" Value="40"/>
         <Setter Property="WidthRequest" Value="90"/>
     </Style>
-    
+
+    <!--Button Icon 2-->
+    <Style TargetType="Button" x:Key="ButtonIcon2">
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="CornerRadius" Value="100"/>
+        <Setter Property="WidthRequest" Value="45"/>
+        <Setter Property="HeightRequest" Value="45"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnColorIcon}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="5, 0, 0, 0"/>
+    </Style>
+
     <!-- Form Button -->
     <Style TargetType="Button" x:Key="ButtonForm">
         <Setter Property="CornerRadius" Value="15"/>
@@ -162,4 +173,89 @@
         <Setter Property="FontSize" Value="20"/>
     </Style>
     
+    <!-- POPUPS -->
+    
+    <Style TargetType="Frame" x:Key="FramePopup">
+        <Setter Property="BackgroundColor" Value="{StaticResource BgColorBlock}"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="Margin" Value="20"/>  
+    </Style>
+
+    <Style TargetType="Frame" x:Key="FramePopupForm">
+        <Setter Property="BackgroundColor" Value="{StaticResource BgColorEntryRow}"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Padding" Value="10, 10, 10, 10"/>
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+
+    <Style TargetType="Frame" x:Key="FramePopupFormEntry">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Margin" Value="0, 5, 10, 5"/>
+        <Setter Property="HasShadow" Value="False"/>
+        <Setter Property="WidthRequest" Value="200" />
+    </Style>
+    
+    <Style TargetType="Label" x:Key="LabelPopupForm">
+        <Setter Property="FontFamily" Value="SenBold"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+    
+    <!-- OTHER -->
+
+    <!--Frame for options in expense list or summary-->
+    <Style TargetType="Frame" x:Key="FrameEntryOptions">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Margin" Value="0, 5, 0, 5"/>
+        <Setter Property="HasShadow" Value="False"/>
+    </Style>
+    
+    <!--Date picker-->
+    <Style TargetType="DatePicker" x:Key="DatePickerRange">
+        <Setter Property="FontFamily" Value="SenBold"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+    </Style>
+
+    <!--Label for the option-->
+    <Style TargetType="Label" x:Key="LabelOptions">
+        <Setter Property="FontFamily" Value="SenRegular"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="Margin" Value="8, 0, 8, 0"/>
+    </Style>
+
+    <!--Selection picker-->
+    <Style TargetType="Picker" x:Key="PickerRange">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TitleColor" Value="White"/>
+
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+
+        <Setter Property="FontFamily" Value="SenRegular"/>
+    </Style>
+
+    <!--Base labels--> 
+    <Style TargetType="Label" x:Key="LabelBaseRegular">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontFamily" Value="SenRegular"/>
+    </Style>
+    <Style TargetType="Label" x:Key="LabelBaseBold">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontFamily" Value="SenBold"/>
+    </Style>
+    
+    
+    
+    <!--EXPENSE LIST-->
+
+    <Style TargetType="Frame" x:Key="FrameListCard">
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Margin" Value="10, 5, 10, 0"/>
+        <Setter Property="HasShadow" Value="False"/>    
+    </Style>
+
 </ResourceDictionary>

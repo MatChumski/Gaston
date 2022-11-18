@@ -2,130 +2,132 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Gastón.Views.NewExpenseView">
-    <ContentPage.Content>           
-            
-            <StackLayout BackgroundColor="{StaticResource BgColorDark}">
+    <ContentPage.Content>
 
-                <StackLayout Style="{StaticResource Key=StackPageTitle}">
-                    <Label Text="New Expense"
-                       Style="{StaticResource Key=LabelPageTitle}"/>
-                </StackLayout>
+        <StackLayout BackgroundColor="{StaticResource BgColorDark}">
 
-                <StackLayout>
-                    <Frame Style="{StaticResource FrameBlock}">
-                        <StackLayout>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1.5*"/>
-                                </Grid.ColumnDefinitions>
+            <StackLayout Style="{StaticResource StackPageTitle}">
+                <Label Text="New Expense"
+                       Style="{StaticResource LabelPageTitle}"/>
+            </StackLayout>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
+            <StackLayout>
+                <Frame Style="{StaticResource FrameBlock}">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
 
-                                <!-- Description -->
-                                <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="0"/>
-                                <Label Grid.Column="0" Grid.Row="0" Text="Description" Style="{StaticResource LabelForm}"/>
-                                <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
-                                    <Entry
+                            <!-- Description -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="0"/>
+                            <Label Grid.Column="0" Grid.Row="0" Text="Description" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <Entry
                                     
                                     Placeholder="Apples, Bread..."
                                     Style="{StaticResource EntryForm}"/>
 
-                                </Frame>
+                            </Frame>
 
-                                <!-- Amount Spent -->
-                                <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="1"/>
-                                <Label Grid.Column="0" Grid.Row="1" Text="Spent" Style="{StaticResource LabelForm}"/>
-                                <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+                            <!-- Amount Spent -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="1"/>
+                            <Label Grid.Column="0" Grid.Row="1" Text="Spent" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                    <Entry
+                                <Entry
                                     
                                     Placeholder="$$$$$"
                                     Style="{StaticResource EntryForm}"/>
 
-                                </Frame>
+                            </Frame>
 
-                                <!-- Category -->
-                                <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="2"/>
-                                <Label Grid.Column="0" Grid.Row="2" Text="Category" Style="{StaticResource LabelForm}"/>
-                                <FlexLayout Grid.Column="1" Grid.Row="2" AlignItems="Center" Padding="0, 0, 5, 0">
-                                    <Frame Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+                            <!-- Category -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="2"/>
+                            <Label Grid.Column="0" Grid.Row="2" Text="Category" Style="{StaticResource LabelForm}"/>
+                            <FlexLayout Grid.Column="1" Grid.Row="2" AlignItems="Center" Padding="0, 0, 5, 0">
+                                <Frame Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                        <Picker Grid.Column="1" 
+                                    <Picker Grid.Column="1" 
                                     Grid.Row="3" 
                                     x:Name="CategoryPicker"
                                     Title="Select a Category"
                                     Style="{StaticResource PickerForm}">
-                                            <Picker.Items>
-                                                <x:String>Food</x:String>
-                                                <x:String>Transportation</x:String>
-                                            </Picker.Items>
-                                        </Picker>
-
-                                    </Frame>
-
-                                    <Button Style="{StaticResource ButtonIcon}" Text="+"/>
-                                </FlexLayout>
-
-                                <!-- -->
-                                <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="3"/>
-                                <Label Grid.Column="0" Grid.Row="3" Text="Type" Style="{StaticResource LabelForm}"/>
-                                <Frame Grid.Column="1" Grid.Row="3" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
-
-                                    <Picker Grid.Column="1" 
-                                    Grid.Row="3" 
-                                    x:Name="TypePicker"
-                                    Title="Select a type"
-                                    Style="{StaticResource PickerForm}">
                                         <Picker.Items>
-                                            <x:String>Cash</x:String>
-                                            <x:String>Transference</x:String>
+                                            <x:String>Food</x:String>
+                                            <x:String>Transportation</x:String>
                                         </Picker.Items>
                                     </Picker>
 
                                 </Frame>
 
+                                <Button Style="{StaticResource ButtonIcon}" 
+                                        Text="+"
+                                        Clicked="OpenNewCategoryPopup"/>
+                            </FlexLayout>
 
-                                <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="4"/>
-                                <Label Grid.Column="0" Grid.Row="4" Text="Date" Style="{StaticResource LabelForm}"/>
-                                <Frame Grid.Column="1" Grid.Row="4" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+                            <!-- -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="3"/>
+                            <Label Grid.Column="0" Grid.Row="3" Text="Type" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="3" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                    <DatePicker Grid.Column="1" 
+                                <Picker Grid.Column="1" 
+                                    Grid.Row="3" 
+                                    x:Name="TypePicker"
+                                    Title="Select a type"
+                                    Style="{StaticResource PickerForm}">
+                                    <Picker.Items>
+                                        <x:String>Cash</x:String>
+                                        <x:String>Transference</x:String>
+                                    </Picker.Items>
+                                </Picker>
+
+                            </Frame>
+
+
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="4"/>
+                            <Label Grid.Column="0" Grid.Row="4" Text="Date" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="4" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <DatePicker Grid.Column="1" 
                                         Grid.Row="4" 
                                         VerticalOptions="CenterAndExpand"
                                         Style="{StaticResource DatePickerForm}"/>
 
-                                </Frame>
-                            </Grid>
+                            </Frame>
+                        </Grid>
 
-                            <FlexLayout Margin="0, 20, 0, 20"
+                        <FlexLayout Margin="0, 20, 0, 20"
                                     JustifyContent="SpaceBetween">
 
-                                <Button Text="SAVE"
+                            <Button Text="SAVE"
                                     Style="{StaticResource ButtonForm}"
                                     BackgroundColor="{StaticResource BtnColorFormAccept}"/>
 
-                                <Button Text="CANCEL"
+                            <Button Text="CANCEL"
                                     Style="{StaticResource ButtonForm}"
                                     BackgroundColor="{StaticResource BtnColorFormCancel}"/>
 
-                            </FlexLayout>
-                        </StackLayout>
+                        </FlexLayout>
+                    </StackLayout>
 
 
 
 
 
-                    </Frame>
-                </StackLayout>
+                </Frame>
             </StackLayout>
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

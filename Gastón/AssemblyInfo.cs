@@ -5,4 +5,4 @@ using Xamarin.Forms.Xaml;
 [assembly: ExportFont("SenRegular.ttf")]
 [assembly: ExportFont("SenBold.ttf")]
 [assembly: ExportFont("SenExtraBold.ttf")]
-[assembly: ExportFont("Coneria.ttf")]
+[assembly: ExportFont("Icon.ttf")]

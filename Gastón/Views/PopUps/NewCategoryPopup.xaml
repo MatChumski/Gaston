@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 x:Class="Gastón.Views.PopUps.NewCategoryPopup">
+    <StackLayout>
+        <Frame Style="{StaticResource FramePopup}">
+            <StackLayout>
+                <Frame Style="{StaticResource FramePopupForm}">
+                    <StackLayout>
+                        <Label Text="New Category"
+                               Style="{StaticResource LabelPopupForm}"/>
+                        
+                        <Frame Style="{StaticResource FramePopupFormEntry}">
+
+                            <Entry
+                                Placeholder="Name"
+                                Style="{StaticResource EntryForm}"/>
+
+                        </Frame>                        
+                    </StackLayout>
+                </Frame>
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Button Text="SAVE" 
+                            Clicked="PopupReturn"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormAccept}"/>
+                    <Button Text="CANCEL" 
+                            Clicked="PopupReturn"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormCancel}"/>                    
+                </FlexLayout>              
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

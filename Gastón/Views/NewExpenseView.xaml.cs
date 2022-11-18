@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
+using Gastón.Views.PopUps;
 
 namespace Gastón.Views
 {
@@ -22,9 +25,10 @@ namespace Gastón.Views
             await Application.Current.MainPage.DisplayAlert("Alert", "Clickeado", "Ok");
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void OpenNewCategoryPopup(object sender, EventArgs e)
         {
-            click();
+            PopupNavigation.Instance.PushAsync(new NewCategoryPopup());
         }
+
     }
 }
