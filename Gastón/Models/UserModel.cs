@@ -6,7 +6,7 @@ using SQLite;
 
 namespace Gastón.Models
 {
-    internal class UserModel
+    public class UserModel
     {
         // User ID
         [PrimaryKey, AutoIncrement]

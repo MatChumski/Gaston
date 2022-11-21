@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Gastón.Views.PopUps.EditCategoryPopup">
+    <StackLayout>
+        <Frame Style="{StaticResource FramePopup}">
+            <StackLayout>
+                <Frame Style="{StaticResource FramePopupForm}">
+                    <StackLayout>
+                        <Label Text="Edit Category"
+                               Style="{StaticResource LabelPopupForm}"/>
+
+                        <Frame Style="{StaticResource FramePopupFormEntry}">
+
+                            <Entry Placeholder="Name"
+                                   Text="{Binding NewNameEntry, Mode=TwoWay}"
+                                   Style="{StaticResource EntryForm}"/>
+
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Button Text="SAVE"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormAccept}"
+                            Command="{Binding EditCategoryCommand}"/>
+                    <Button Text="CANCEL" 
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormCancel}"
+                            Command="{Binding PopupReturnCommand}"/>
+                </FlexLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

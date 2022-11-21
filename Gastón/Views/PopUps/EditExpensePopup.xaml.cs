@@ -12,17 +12,18 @@ using Xamarin.Forms.Xaml;
 namespace Gastón.Views.PopUps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewCategoryPopup
+    public partial class EditExpensePopup
     {
-        public NewCategoryPopup()
+        public EditExpensePopup()
         {
             InitializeComponent();
-            BindingContext = new NewCategoryViewModel();
         }
 
-        private async void PopupReturn(object sender, EventArgs e)
+        public EditExpensePopup(ExpenseListViewModel.ExpenseCard expenseInfo)
         {
-            await PopupNavigation.Instance.PopAsync();
+            InitializeComponent();
+            BindingContext = new EditExpenseViewModel(expenseInfo);
         }
+
     }
 }

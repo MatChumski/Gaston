@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Gastón.Views.PopUps.DeleteCategoryPopup">
+    <StackLayout>
+        <Frame Style="{StaticResource FramePopup}">
+            <StackLayout>
+
+                <Label Text="¿Are you sure you want to delete this category?"
+                       Style="{StaticResource LabelBaseBold}"
+                       FontSize="20"/>
+
+                <Frame Style="{StaticResource FrameListCard}"
+                       BackgroundColor="{StaticResource BgColorEntryRow}"
+                       Margin="0">
+
+                    <StackLayout>
+
+                        <Label Text="{Binding DeletingCategory.Name}"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="22"/>
+
+                        <Label Text="Assign 0 records to:"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Assign "/>
+                                    <Span Text="{Binding Records}"/>
+                                    <Span Text=" records to"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Frame Style="{StaticResource FormEntryFrame}">
+
+                            <Picker Grid.Column="1" 
+                                    Grid.Row="3" 
+                                    x:Name="CategoryPicker"
+                                    Title="Select a Category"
+                                    Style="{StaticResource PickerForm}"
+                                    ItemsSource="{Binding CategoriesList}"
+                                    SelectedItem="{Binding SelectedCategoryEntry}">
+                            </Picker>
+
+                        </Frame>
+
+                    </StackLayout>
+                    
+                </Frame>
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Button Text="ACCEPT" 
+                            Command="{Binding DeleteCategoryCommand}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="DarkRed"/>
+                    <Button Text="CANCEL" 
+                            Command="{Binding PopupReturnCommand}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormCancel}"/>
+                </FlexLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

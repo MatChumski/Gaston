@@ -1,103 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
              xmlns:Font_Icons="clr-namespace:Gastón.Fonts"
              x:Class="Gastón.Views.ExpenseListView">
     <ContentPage.Content>
 
-        <ScrollView>
-            
-            <StackLayout BackgroundColor="{StaticResource BgColorDark}" Padding="5, 0, 5, 0">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" x:Name="ViewList">
+            <ScrollView>
 
-                <StackLayout Style="{StaticResource StackPageTitle}">
-                
-                    <Label Text="Your Expenses"
+                <StackLayout BackgroundColor="{StaticResource BgColorDark}" Padding="5, 0, 5, 0">
+
+                    <StackLayout Style="{StaticResource StackPageTitle}">
+
+                        <Label Text="Your Expenses"
                            Style="{StaticResource LabelPageTitle}"/>
-                
-                </StackLayout>
 
-                <StackLayout>
-                
-                    <!--DATE RANGE-->            
-                    <FlexLayout Direction="Row" AlignItems="Center">
-                
-                        <Label Text="From"
+                    </StackLayout>
+
+                    <StackLayout>
+
+                        <!--DATE RANGE-->
+                        <FlexLayout Direction="Row" AlignItems="Center" Margin="5, 0, 0, 0">
+
+                            <Label Text="From"
                                Style="{StaticResource LabelOptions}"
                                FontSize="20"/>
 
-                        <Frame Style="{StaticResource FrameEntryOptions}"
+                            <Frame Style="{StaticResource FrameEntryOptions}"
                                BackgroundColor="{StaticResource BgColorBlock}"
                                WidthRequest="100"
                                HeightRequest="35">
 
-                            <DatePicker 
+                                <DatePicker 
                                 VerticalOptions="CenterAndExpand"
-                                Style="{StaticResource DatePickerRange}"/>
+                                Style="{StaticResource DatePickerRange}"
+                                Date="{Binding StartDateEntry}"/>
 
-                        </Frame>
-                
-                        <Label Text="to"
+                            </Frame>
+
+                            <Label Text="to"
                                Style="{StaticResource LabelOptions}"
                                FontSize="20"/>
 
-                        <Frame Style="{StaticResource FrameEntryOptions}" 
+                            <Frame Style="{StaticResource FrameEntryOptions}" 
                                BackgroundColor="{StaticResource BgColorBlock}"
                                WidthRequest="100"
                                HeightRequest="35">
 
-                            <DatePicker 
+                                <DatePicker 
                                 VerticalOptions="CenterAndExpand"
-                                Style="{StaticResource DatePickerRange}"/>
+                                Style="{StaticResource DatePickerRange}"
+                                Date="{Binding EndDateEntry}"/>
 
-                        </Frame>
-                    </FlexLayout>
-            
-                    <!--FILTERS-->
-                    <FlexLayout Direction="Row" AlignItems="Center">
+                            </Frame>
+                        </FlexLayout>
 
-                        <Label Text="Category"
+                        <!--FILTERS-->
+                        <FlexLayout Direction="Row" AlignItems="Center" Margin="5, 0, 0, 0">
+
+                            <Label Text="Category"
                                Style="{StaticResource LabelOptions}"/>
 
-                        <Frame Style="{StaticResource FrameEntryOptions}"
+                            <Frame Style="{StaticResource FrameEntryOptions}"
                                BackgroundColor="{StaticResource BgColorBlock}"
                                WidthRequest="65"
                                HeightRequest="35">
 
-                            <Picker x:Name="TypePicker"
+                                <Picker x:Name="TypePicker"
                                     Title="Select a type"
                                     Style="{StaticResource PickerRange}"
-                                    FontSize="14">
-                                <Picker.Items>
-                                    <x:String>All</x:String>
-                                    <x:String>Food</x:String>
-                                    <x:String>Transportation</x:String>
-                                </Picker.Items>
-                            </Picker>
+                                    SelectedItem="{Binding SelectedCategoryEntry}"
+                                    FontSize="14"
+                                    ItemsSource="{Binding CategoriesList}">
+                                </Picker>
 
-                        </Frame>
+                            </Frame>
 
-                        <Label Text="Order by"
+                            <Label Text="Order by"
                                Style="{StaticResource LabelOptions}"/>
 
-                        <Frame Style="{StaticResource FrameEntryOptions}" 
+                            <Frame Style="{StaticResource FrameEntryOptions}" 
                                BackgroundColor="{StaticResource BgColorBlock}"
                                WidthRequest="65"
                                HeightRequest="35">
 
-                            <Picker x:Name="SortingPicker"
+                                <Picker x:Name="SortingPicker"
                                     Title="Select a sorting parameter"
                                     Style="{StaticResource PickerRange}"
+                                    SelectedItem="{Binding SelectedSortEntry}"
                                     FontSize="14"
                                     SelectedIndex="1">
-                                <Picker.Items>
-                                    <x:String>Date</x:String>
-                                    <x:String>Amount</x:String>
-                                </Picker.Items>
-                            </Picker>
+                                    <Picker.Items>
+                                        <x:String>Date</x:String>
+                                        <x:String>Amount</x:String>
+                                    </Picker.Items>
+                                </Picker>
 
-                        </Frame>
+                            </Frame>
 
-                        <Button Text="▼"
+                            <Button Text="▼"
                                 CornerRadius="100"
                                 WidthRequest="40"
                                 HeightRequest="40"
@@ -105,73 +107,127 @@
                                 Padding="0, 0, 0, 2"
                                 BackgroundColor="Transparent"
                                 FontFamily="SenBold"/>
-                    </FlexLayout>
-                
-                </StackLayout>
-
-                <Frame BackgroundColor="#436338" Style="{StaticResource FrameListCard}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="25"/>
-                            <RowDefinition Height="27"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-
-                        <!--COLUMN 1-->
-                        <Label Text="Description"
-                               Grid.Column="0"
-                               Grid.Row="0"
-                               YAlign="Center"
-                               XAlign="Start"
-                               Style="{StaticResource LabelBaseBold}"
-                               FontSize="22"/>
-                    
-                        <Label Text="$$$$$"
-                               Grid.Column="0"
-                               Grid.Row="1"
-                               YAlign="Center"
-                               XAlign="Start"
-                               Style="{StaticResource LabelBaseBold}"
-                               FontSize="28"/>
-                    
-                        <Label Text="Category"
-                               Grid.Column="0"
-                               Grid.Row="2"
-                               YAlign="Center"
-                               XAlign="Start"
-                               Style="{StaticResource LabelBaseRegular}"
-                               FontSize="22"/>
-
-                        <!--COLUMN 2-->
-                        <Label Text="DD/MM/YYYY"
-                               Grid.Column="1"
-                               Grid.Row="0"
-                               YAlign="Center"
-                               XAlign="End"
-                               Style="{StaticResource LabelBaseRegular}"
-                               FontSize="22"/>
-                    
-                        <FlexLayout Grid.Column="1"
-                                    Grid.Row="2"
-                                    JustifyContent="End">
-                            <Button Text="{x:Static Font_Icons:Icons.Edit}" 
-                                    FontFamily="Icon"
-                                    TextColor="{StaticResource BgColorDark}"
-                                    Style="{StaticResource ButtonIcon2}"/>
-                            <Button Text="{x:Static Font_Icons:Icons.Cancel}" 
-                                    FontFamily="Icon"
-                                    TextColor="DarkRed"
-                                    Style="{StaticResource ButtonIcon2}"/>                        
                         </FlexLayout>
-                    </Grid>
-                </Frame>
 
+                        <Label Style="{StaticResource LabelBaseBold}"
+                           FontSize="32"
+                           Margin="15, 5, 15, 5">
 
-            </StackLayout>
-        </ScrollView>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="$"/>
+                                    <Span Text="{Binding TotalAmountLabel}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
+
+                    </StackLayout>
+
+                    <ListView x:Name="ListExpenses"
+                          ItemsSource="{Binding ExpensesList}"
+                          HasUnevenRows="True"
+                          IsPullToRefreshEnabled="False"
+                          SeparatorVisibility="None">
+
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <ViewCell>
+
+                                    <StackLayout>
+
+                                        <Frame BackgroundColor="{StaticResource BgColorBlock}" 
+                                           Style="{StaticResource FrameListCard}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="27"/>
+                                                    <RowDefinition Height="40"/>
+                                                </Grid.RowDefinitions>
+
+                                                <!--COLUMN 1-->
+                                                <Label Text="{Binding Expense.Description}"
+                                                   Grid.Column="0"
+                                                   Grid.Row="0"
+                                                   YAlign="Center"
+                                                   XAlign="Start"
+                                                   Style="{StaticResource LabelBaseBold}"
+                                                   FontSize="22"/>
+
+                                                <Label Grid.Column="0"
+                                                       Grid.Row="1"
+                                                       YAlign="Center"
+                                                       XAlign="Start"
+                                                       Style="{StaticResource LabelBaseBold}"
+                                                       FontSize="28">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="$"/>
+                                                            <Span Text="{Binding Amount}"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                                <Label Text="{Binding Category}"
+                                                   Grid.Column="0"
+                                                   Grid.Row="2"
+                                                   YAlign="Center"
+                                                   XAlign="Start"
+                                                   Style="{StaticResource LabelBaseRegular}"
+                                                   FontSize="22"/>
+
+                                                <!--COLUMN 2-->
+                                                <Label Text="{Binding Expense.Date}"
+                                                   Grid.Column="1"
+                                                   Grid.Row="0"
+                                                   YAlign="Center"
+                                                   XAlign="End"
+                                                   Style="{StaticResource LabelBaseRegular}"
+                                                   FontSize="22"/>
+
+                                                <FlexLayout Grid.Column="1"
+                                                        Grid.Row="1"
+                                                        Grid.RowSpan="2"
+                                                        AlignItems="End"
+                                                        JustifyContent="End">
+
+                                                    <Button Text="{x:Static Font_Icons:Icons.Edit}"
+                                                            FontFamily="Icon"
+                                                            TextColor="{StaticResource BgColorDark}"
+                                                            Style="{StaticResource ButtonIcon2}"
+                                                            Command="{Binding Path=BindingContext.EditExpensePopupCommand, Source={x:Reference ViewList}}"
+                                                            CommandParameter="{Binding .}"/>
+
+                                                    <Button Text="{x:Static Font_Icons:Icons.Cancel}" 
+                                                            FontFamily="Icon"
+                                                            TextColor="DarkRed"
+                                                            Style="{StaticResource ButtonIcon2}"
+                                                            Command="{Binding Path=BindingContext.DeleteExpensePopupCommand, Source={x:Reference ViewList}}"
+                                                            CommandParameter="{Binding .}"/>
+
+                                                </FlexLayout>
+                                            </Grid>
+                                        </Frame>
+
+                                    </StackLayout>
+
+                                </ViewCell>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+        
     </ContentPage.Content>
 </ContentPage>

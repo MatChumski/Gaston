@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Gastón.Views.PopUps.DeleteExpensePopup">
+
+    <StackLayout>
+        <Frame Style="{StaticResource FramePopup}">
+            <StackLayout>
+                
+                <Label Text="¿Are you sure you want to delete this expense?"
+                       Style="{StaticResource LabelBaseBold}"
+                       FontSize="20"/>
+                
+                <Frame Style="{StaticResource FrameListCard}"
+                       BackgroundColor="{StaticResource BgColorEntryRow}"
+                       Margin="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="27"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <!--COLUMN 1-->
+                        <Label Text="{Binding DeletingExpense.Description}"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="20"/>
+
+                        <Label Grid.Column="0"
+                               Grid.Row="1"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="26">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="$"/>
+                                    <Span Text="{Binding AmountLabel}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Text="{Binding CategoryLabel}"
+                               Grid.Column="0"
+                               Grid.Row="2"
+                               YAlign="Center"
+                               XAlign="Start"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="20"/>
+
+                        <!--COLUMN 2-->
+                        <Label Text="{Binding DeletingExpense.Date}"
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               YAlign="Center"
+                               XAlign="End"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="20"/>
+                        
+                    </Grid>
+                </Frame>
+                <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Button Text="ACCEPT" 
+                            Command="{Binding DeleteExpenseCommand}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="DarkRed"/>
+                    <Button Text="CANCEL" 
+                            Command="{Binding PopupReturnCommand}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormCancel}"/>
+                </FlexLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+    
+</popup:PopupPage>

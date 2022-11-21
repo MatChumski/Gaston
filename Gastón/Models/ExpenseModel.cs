@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Gastón.Models
 {
-    internal class ExpenseModel
+    public class ExpenseModel
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         // ID of the creator of the expense
-        public string FkUser { get; set; }
+        public int FkUser { get; set; }
     
         // ID of the category the expense belongs to
-        public string FkCategory { get; set; }
+        public int FkCategory { get; set; }
 
         // How much
         public float Amount { get; set; }

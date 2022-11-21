@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup.Services;
 using Gastón.Views.PopUps;
+using Gastón.ViewModels;
 
 namespace Gastón.Views
 {
@@ -18,17 +18,11 @@ namespace Gastón.Views
         public NewExpenseView()
         {
             InitializeComponent();
+            BindingContext = new NewExpenseViewModel();
         }
 
-        public async void click()
-        {
-            await Application.Current.MainPage.DisplayAlert("Alert", "Clickeado", "Ok");
-        }
 
-        private void OpenNewCategoryPopup(object sender, EventArgs e)
-        {
-            PopupNavigation.Instance.PushAsync(new NewCategoryPopup());
-        }
+        
 
     }
 }

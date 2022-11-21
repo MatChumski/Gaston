@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Gastón.Views.PopUps.EditExpensePopup">
+    <StackLayout>
+
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+
+            <ScrollView>
+
+                <Frame Style="{StaticResource FramePopup}"
+                       Padding="10">
+                    <StackLayout>
+
+                        <Label Text="Edit Expense"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="24"
+                               Margin="0, 0, 0, 10"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Description -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="0"/>
+                            <Label Grid.Column="0" Grid.Row="0" Text="Description" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <Entry Text="{Binding NewDescriptionEntry}" 
+                                       Placeholder="Apples, Bread..."
+                                       Style="{StaticResource EntryForm}"/>
+
+                            </Frame>
+
+                            <!-- Amount Spent -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="1"/>
+                            <Label Grid.Column="0" Grid.Row="1" Text="Spent" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <Entry Text="{Binding NewSpentEntry}" 
+                                       Placeholder="$$$$$"
+                                       Style="{StaticResource EntryForm}"/>
+
+                            </Frame>
+
+                            <!-- Category -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="2"/>
+                            <Label Grid.Column="0" Grid.Row="2" Text="Category" Style="{StaticResource LabelForm}"/>
+                            <FlexLayout Grid.Column="1" Grid.Row="2" AlignItems="Center" Padding="0, 0, 5, 0">
+                                <Frame Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                    <Picker Grid.Column="1" 
+                                            Grid.Row="3" 
+                                            x:Name="CategoryPicker"
+                                            Title="Select a Category"
+                                            Style="{StaticResource PickerForm}"
+                                            ItemsSource="{Binding CategoriesList}"
+                                            SelectedItem="{Binding NewCategoryEntry}"/>
+
+                                </Frame>
+
+                                <Button Style="{StaticResource ButtonIcon}" 
+                                        Text="+"
+                                        Command="{Binding NewCategoryPopupCommand}"/>
+                            </FlexLayout>
+
+                            <!-- -->
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="3"/>
+                            <Label Grid.Column="0" Grid.Row="3" Text="Type" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="3" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <Picker Grid.Column="1" 
+                                        Grid.Row="3" 
+                                        x:Name="TypePicker"
+                                        Title="Select a type"
+                                        Style="{StaticResource PickerForm}"
+                                        SelectedItem="{Binding NewTypeEntry}">
+                                    <Picker.Items>
+                                        <x:String>Cash</x:String>
+                                        <x:String>Transference</x:String>
+                                    </Picker.Items>
+                                </Picker>
+
+                            </Frame>
+
+
+                            <BoxView Style="{StaticResource BoxEntryRow}" Grid.Row="4"/>
+                            <Label Grid.Column="0" Grid.Row="4" Text="Date" Style="{StaticResource LabelForm}"/>
+                            <Frame Grid.Column="1" Grid.Row="4" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
+
+                                <DatePicker Grid.Column="1" 
+                                            Grid.Row="4" 
+                                            VerticalOptions="CenterAndExpand"
+                                            Style="{StaticResource DatePickerForm}"
+                                            Date="{Binding NewDateEntry}"/>
+
+                            </Frame>
+                        </Grid>
+
+                        <FlexLayout Margin="0, 20, 0, 20"
+                                    JustifyContent="SpaceBetween">
+
+                            <Button Text="SAVE"
+                                    Style="{StaticResource ButtonForm}"
+                                    BackgroundColor="{StaticResource BtnColorFormAccept}"
+                                    Command="{Binding EditExpenseCommand}"/>
+
+                            <Button Text="CANCEL"
+                                    Style="{StaticResource ButtonForm}"
+                                    BackgroundColor="{StaticResource BtnColorFormCancel}"
+                                    Command="{Binding PopupReturnCommand}"/>
+
+                        </FlexLayout>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </RefreshView>
+    </StackLayout>
+</popup:PopupPage>

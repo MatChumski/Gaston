@@ -22,7 +22,7 @@ namespace Gastón
                 {
                     string databasePath = Path.Combine(
                         Environment.GetFolderPath(
-                            Environment.SpecialFolder.LocalApplicationData), "gastonDB.db");
+                            Environment.SpecialFolder.LocalApplicationData), "gastonDB3.db");
                     Debug.WriteLine(databasePath);
                     database = new DB(databasePath);
                 }
@@ -31,10 +31,35 @@ namespace Gastón
         }
         public App()
         {
+            //activeUser = new UserModel()
+            //{
+            //    Username = "admin",
+            //    Password = "admin123",
+            //    Email = "mateo0704@hotmail.com",
+            //    Role = "admin",
+            //    Id = '1',
+            //    CreationDate = DateTime.Now
+            //};
+
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new Login());
-            MainPage = new NavigationPage(new MainView());
+            MainPage = new NavigationPage(new Login());
+            //MainPage = new NavigationPage(new MainView());
+        }
+
+        static UserModel activeUser;
+
+        public static UserModel ActiveUser
+        {
+            get 
+            { 
+                return activeUser; 
+            }
+
+            set
+            {
+                activeUser = value;
+            }
         }
 
         private async void CreateAdmin()

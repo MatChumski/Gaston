@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Gastón.Models
 {
-    internal class CategoryModel
+    public class CategoryModel
     {
         // ID
         [PrimaryKey, AutoIncrement]

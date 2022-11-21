@@ -2,9 +2,10 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="BgColorMain">#5C8A4D</Color>
+    <!--<Color x:Key="BgColorMain">#5C8A4D</Color>
     <Color x:Key="BgColorDark">#293D22</Color>
     <Color x:Key="BgColorBlock">#436338</Color>
+    <Color x:Key="BgColorBlock2">#557E47</Color>
     <Color x:Key="BgColorEntryRow">#557E47</Color>
     
     <Color x:Key="BtnColorMain">#436338</Color>
@@ -15,6 +16,22 @@
     <Color x:Key="BtnColorFormCancel">#767676</Color>
     
     <Color x:Key="EntryColorMain">#557E47</Color>
+    <Color x:Key="EntryTextAux">#767676</Color>-->
+
+    <Color x:Key="BgColorMain">#5878A6</Color>
+    <Color x:Key="BgColorDark">#2F4159</Color>
+    <Color x:Key="BgColorBlock">#445D80</Color>
+    <Color x:Key="BgColorBlock2">#516F99</Color>
+    <Color x:Key="BgColorEntryRow">#516F99</Color>
+
+    <Color x:Key="BtnColorMain">#445D80</Color>
+    <Color x:Key="BtnColorAux">#767676</Color>
+    <Color x:Key="BtnColorIcon">#7AA7E6</Color>
+
+    <Color x:Key="BtnColorFormAccept">#5878A6</Color>
+    <Color x:Key="BtnColorFormCancel">#767676</Color>
+
+    <Color x:Key="EntryColorMain">#516F99</Color>
     <Color x:Key="EntryTextAux">#767676</Color>
 
     <!-- MAIN BUTTON -->
@@ -83,6 +100,12 @@
         <Setter Property="BackgroundColor" Value="{StaticResource BgColorEntryRow}"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="Grid.ColumnSpan" Value="2"/>
+    </Style>
+
+    <Style TargetType="Frame" x:Key="FrameRow">
+        <Setter Property="BackgroundColor" Value="{StaticResource BgColorEntryRow}"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Padding" Value="15, 10, 15, 10"/>
     </Style>
 
     <!-- Buttons -->
@@ -178,7 +201,8 @@
     <Style TargetType="Frame" x:Key="FramePopup">
         <Setter Property="BackgroundColor" Value="{StaticResource BgColorBlock}"/>
         <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
-        <Setter Property="Margin" Value="20"/>  
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="CornerRadius" Value="10"/>
     </Style>
 
     <Style TargetType="Frame" x:Key="FramePopupForm">
@@ -252,7 +276,7 @@
     <!--EXPENSE LIST-->
 
     <Style TargetType="Frame" x:Key="FrameListCard">
-        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Padding" Value="10, 10, 10, 10"/>
         <Setter Property="CornerRadius" Value="15"/>
         <Setter Property="Margin" Value="10, 5, 10, 0"/>
         <Setter Property="HasShadow" Value="False"/>    

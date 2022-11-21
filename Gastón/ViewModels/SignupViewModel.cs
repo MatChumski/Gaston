@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Gastón.ViewModels
 {
-    internal class SignupViewModel : BaseViewModel
+    public class SignupViewModel : BaseViewModel
     {
 
         #region Attributes

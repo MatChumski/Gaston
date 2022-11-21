@@ -15,6 +15,7 @@
 
                             <Entry
                                 Placeholder="Name"
+                                Text="{Binding CategoryNameEntry, Mode=TwoWay}"
                                 Style="{StaticResource EntryForm}"/>
 
                         </Frame>                        
@@ -22,11 +23,11 @@
                 </Frame>
                 <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
                     <Button Text="SAVE" 
-                            Clicked="PopupReturn"
+                            Command="{Binding NewCategoryCommand}"
                             Style="{StaticResource ButtonForm}"
                             BackgroundColor="{StaticResource BtnColorFormAccept}"/>
                     <Button Text="CANCEL" 
-                            Clicked="PopupReturn"
+                            Command="{Binding PopupReturnCommand}"
                             Style="{StaticResource ButtonForm}"
                             BackgroundColor="{StaticResource BtnColorFormCancel}"/>                    
                 </FlexLayout>              

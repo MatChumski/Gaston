@@ -12,17 +12,18 @@ using Xamarin.Forms.Xaml;
 namespace Gastón.Views.PopUps
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewCategoryPopup
+    public partial class DeleteCategoryPopup
     {
-        public NewCategoryPopup()
+        public DeleteCategoryPopup()
         {
             InitializeComponent();
-            BindingContext = new NewCategoryViewModel();
         }
 
-        private async void PopupReturn(object sender, EventArgs e)
+        public DeleteCategoryPopup(ConfigViewModel.UserCategoriesInfo categoryInfo)
         {
-            await PopupNavigation.Instance.PopAsync();
+            InitializeComponent();
+            BindingContext = new DeleteCategoryViewModel(categoryInfo);
         }
+
     }
 }

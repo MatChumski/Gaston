@@ -1,12 +1,243 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:Font_Icons="clr-namespace:Gastón.Fonts"
+             xmlns:View_Models="clr-namespace:Gastón.ViewModels"
              x:Class="Gastón.Views.ConfigView">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource BgColorDark}">
-            <Label Text="Configuration"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="{StaticResource BgColorDark}" x:Name="ViewConfig">
+
+            <!--TITLE-->
+            <StackLayout Style="{StaticResource StackPageTitle}">
+                <Label Text="Settings"
+                       Style="{StaticResource LabelPageTitle}"/>
+            </StackLayout>
+
+            <!--USER INFO-->
+            <Frame Style="{StaticResource FrameBlock}">
+
+                <StackLayout>
+
+                    <!--USERNAME-->
+                    <FlexLayout JustifyContent="SpaceBetween">
+
+                        <Label Text="User"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="20"/>
+                        <Label Text="{Binding ActiveUsernameLabel, Mode=TwoWay}"
+                               x:Name="activeUsernameLabel"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="20"/>
+
+                    </FlexLayout>
+
+                    <!--EMAIL-->
+                    <FlexLayout JustifyContent="SpaceBetween">
+
+                        <Label Text="E-Mail"
+                               Style="{StaticResource LabelBaseBold}"
+                               FontSize="20"/>
+
+                        <Label Text="{Binding ActiveEmailLabel, Mode=TwoWay}"
+                               x:Name="activeEmailLabel"
+                               Style="{StaticResource LabelBaseRegular}"
+                               FontSize="20"/>
+
+                    </FlexLayout>
+
+                </StackLayout>
+
+            </Frame>
+
+            <!--
+            CATEGORIES
+            Button to create a new category
+            -->
+            <FlexLayout Margin="15, 5, 15, 5" JustifyContent="SpaceBetween" AlignItems="Center">
+                
+                <Label Text="Your Categories"
+                       Style="{StaticResource LabelBaseBold}"
+                       FontSize="32"/>
+
+                <Button Text="+"
+                        Style="{StaticResource ButtonIcon}"
+                        WidthRequest="40"
+                        Command="{Binding NewCategoryPopupCommand}"/>
+
+            </FlexLayout>
+
+            <StackLayout>
+
+                <Frame Style="{StaticResource FrameBlock}">
+                    
+                    <StackLayout>
+
+                        <Frame BackgroundColor="{StaticResource BgColorEntryRow}" 
+                               Style="{StaticResource FrameListCard}"
+                               Margin="0">
+
+                            <!--Expenses without category-->
+                            <StackLayout>
+                                
+                                <Label Text="0 Records without Category"
+                                       Style="{StaticResource LabelBaseBold}"
+                                       FontSize="20">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding NoCategoryLabel}"/>
+                                            <Span Text=" Records with no category"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label Style="{StaticResource LabelBaseRegular}"
+                                       FontSize="20">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="$"/>
+                                            <Span Text="{Binding NoCategoryAmountLabel}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                
+                            </StackLayout>
+
+                        </Frame>
+
+                        <!--List view with all the categories-->
+                        <ListView x:Name="ListUserCategories"
+                                  ItemsSource="{Binding UserCategoriesInfosList}"
+                                  HasUnevenRows="True"
+                                  IsPullToRefreshEnabled="True"
+                                  SeparatorVisibility="None"
+                                  RefreshCommand="{Binding RefreshListCommand}"
+                                  IsRefreshing="{Binding IsRefreshingListBool}"
+                                  SelectionMode="None">
+
+                            <ListView.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <ViewCell>
+
+                                        <StackLayout Margin="0, 2.5, 0, 2.5">
+
+                                            <Frame BackgroundColor="{StaticResource BgColorEntryRow}"
+                                                   Style="{StaticResource FrameListCard}"
+                                                   Margin="0">
+
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="auto"/>
+                                                        <RowDefinition Height="auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <!--COLUMN 1-->
+                                                    
+                                                    <!--Category Name-->
+                                                    <StackLayout Grid.Column="0"
+                                                               Grid.Row="0">
+
+                                                        <Label Text="{Binding userCategory.Name, Mode=TwoWay}"                                                           
+                                                               VerticalOptions="Center"
+                                                               Style="{StaticResource LabelBaseBold}"
+                                                               FontSize="20"/>                                                        
+
+                                                    </StackLayout>
+
+                                                    <!--Category total amount-->
+                                                    <StackLayout Grid.Column="0"
+                                                               Grid.Row="1">
+
+                                                        <Label VerticalOptions="Center"
+                                                               Style="{StaticResource LabelBaseRegular}"
+                                                               FontSize="20">
+                                                            
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="$"/>
+                                                                    <Span Text="{Binding categoryAmount, Mode=TwoWay}"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                            
+                                                        </Label>
+
+
+                                                    </StackLayout>
+
+                                                    <!--Category amount of records-->
+                                                    <StackLayout Grid.Column="0"
+                                                               Grid.Row="2">
+
+                                                        <Label VerticalOptions="Center"
+                                                               Style="{StaticResource LabelBaseRegular}"
+                                                               TextColor="{StaticResource BgColorDark}"
+                                                               FontSize="14">
+
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding categoryRecords, Mode=TwoWay}" />
+                                                                    <Span Text=" Records"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+
+                                                        </Label>
+                                                    </StackLayout>
+
+
+                                                    <!--COLUMN 2-->
+                                                    
+                                                    <!--Buttons for editing and deleting-->
+                                                    <FlexLayout Grid.Column="1"
+                                                                Grid.Row="0"
+                                                                Grid.RowSpan="3"
+                                                                JustifyContent="End"
+                                                                AlignItems="Center">
+
+                                                        <!--Edit-->
+                                                        <Button Text="{x:Static Font_Icons:Icons.Edit}"
+                                                                FontFamily="Icon"
+                                                                Style="{StaticResource ButtonIcon2}"
+                                                                TextColor="{StaticResource BgColorDark}"
+                                                                Command="{Binding Path=BindingContext.EditCategoryPopupCommand, Source={x:Reference ViewConfig}}"
+                                                                CommandParameter="{Binding .}">
+                                                        </Button>
+
+                                                        <!--Delete-->
+                                                        <Button Text="{x:Static Font_Icons:Icons.Cancel}"
+                                                                FontFamily="Icon"
+                                                                Style="{StaticResource ButtonIcon2}"
+                                                                TextColor="DarkRed"
+                                                                Command="{Binding Path=BindingContext.DeleteCategoryPopupCommand, Source={x:Reference ViewConfig}}"
+                                                                CommandParameter="{Binding .}">
+                                                        </Button>
+
+                                                    </FlexLayout>
+                                                </Grid>
+
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell>
+                                    
+                                </DataTemplate>
+                                
+                            </ListView.ItemTemplate>
+                            
+                        </ListView>
+                        
+                        
+                    </StackLayout>
+                    
+                </Frame>
+
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

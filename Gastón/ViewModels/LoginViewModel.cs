@@ -25,13 +25,13 @@ namespace Gastón.ViewModels
         public string UserIdEntry
         {
             get { return userID; }
-            set { SetValue(ref this.userID, value); }
+            set { SetValue(ref this.userID, value.Trim()); }
         }
 
         public string PasswordEntry
         {
             get { return password; }
-            set { SetValue(ref this.password, value); }
+            set { SetValue(ref this.password, value.Trim()); }
         }
 
         #endregion
@@ -79,8 +79,9 @@ namespace Gastón.ViewModels
 
             await Application.Current.MainPage.DisplayAlert("Login", "Successful Login", "Ok");
 
+            App.ActiveUser = foundUsers[0];
             var last = Application.Current.MainPage.Navigation.NavigationStack.Last();
-            Application.Current.MainPage.Navigation.InsertPageBefore(new NavigationPage(new MainView()), last);
+            Application.Current.MainPage.Navigation.InsertPageBefore(new MainView(), last);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
