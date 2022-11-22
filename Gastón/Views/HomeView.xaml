@@ -1,197 +1,211 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:charts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              NavigationPage.HasNavigationBar="False"
              x:Class="Gastón.Views.HomeView">
     <ContentPage.Content>
 
-        <ScrollView>
-            
-            <StackLayout BackgroundColor="{StaticResource BgColorDark}">
-            
-                <StackLayout Style="{StaticResource StackPageTitle}">
-                    <Label Text="Summary"
-                       Style="{StaticResource LabelPageTitle}"/>
-                </StackLayout>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
 
-                <StackLayout>
+            <ScrollView>
 
-                    <Frame Style="{StaticResource FrameBlock}"
-                           BackgroundColor="{StaticResource BgColorBlock2}"
-                           Margin="15, 0, 15, 5">
+                <StackLayout BackgroundColor="{StaticResource BgColorDark}">
 
-                        <StackLayout>
-                            
-                            <Label Text="You have spent"
-                                   Style="{StaticResource LabelBaseRegular}"
-                                   FontSize="24"/>
-                            
-                            <Label Text="$0"
-                                   Style="{StaticResource LabelBaseBold}"
-                                   FontSize="40"/>
-                            
-                            <FlexLayout AlignItems="Center">
-                                <Label Text="From"
+                    <StackLayout Style="{StaticResource StackPageTitle}">
+                        <Label Text="Summary"
+                           Style="{StaticResource LabelPageTitle}"/>
+                    </StackLayout>
+
+                    <StackLayout>
+
+                        <Frame Style="{StaticResource FrameBlock}"
+                               BackgroundColor="{StaticResource BgColorBlock2}"
+                               Margin="15, 0, 15, 5">
+
+                            <StackLayout>
+
+                                <Label Text="You have spent"
                                        Style="{StaticResource LabelBaseRegular}"
-                                       FontSize="20"
-                                       Margin="0, 0, 10, 0"/>
+                                       FontSize="24"/>
 
-                                <Frame Style="{StaticResource FrameEntryOptions}"
-                                       BackgroundColor="{StaticResource BgColorBlock}"
-                                       WidthRequest="100"
-                                       HeightRequest="35">
+                                <Label Style="{StaticResource LabelBaseBold}"
+                                       FontSize="40">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="$"/>
+                                            <Span Text="{Binding TotalAmountLabel}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
 
-                                    <DatePicker VerticalOptions="CenterAndExpand"
-                                                Style="{StaticResource DatePickerRange}"/>
+                                <FlexLayout AlignItems="Center">
+                                    <Label Text="From"
+                                           Style="{StaticResource LabelBaseRegular}"
+                                           FontSize="20"
+                                           Margin="0, 0, 10, 0"/>
 
-                                </Frame>
+                                    <Frame Style="{StaticResource FrameEntryOptions}"
+                                           BackgroundColor="{StaticResource BgColorBlock}"
+                                           WidthRequest="100"
+                                           HeightRequest="35">
 
-                                <Label Text="to" 
-                                       Style="{StaticResource LabelBaseRegular}"
-                                       FontSize="20"
-                                       Margin="10, 0, 10, 0"/>
-                                
-                                <Frame Style="{StaticResource FrameEntryOptions}"
-                                       BackgroundColor="{StaticResource BgColorBlock}"
-                                       WidthRequest="100"
-                                       HeightRequest="35">
+                                        <DatePicker VerticalOptions="CenterAndExpand"
+                                                    Style="{StaticResource DatePickerRange}"
+                                                    Date="{Binding StartDateEntry}"/>
 
-                                    <DatePicker VerticalOptions="CenterAndExpand"
-                                                Style="{StaticResource DatePickerRange}"/>
+                                    </Frame>
 
-                                </Frame>
-                            </FlexLayout>
-                            
-                            <Label Text="Last expense on DD/MM/YYYY"
-                                   Style="{StaticResource LabelBaseRegular}"
-                                   FontSize="18"
-                                   TextColor="{StaticResource BgColorDark}"/>
-                        </StackLayout>                        
+                                    <Label Text="to" 
+                                           Style="{StaticResource LabelBaseRegular}"
+                                           FontSize="20"
+                                           Margin="10, 0, 10, 0"/>
 
-                    </Frame>
+                                    <Frame Style="{StaticResource FrameEntryOptions}"
+                                           BackgroundColor="{StaticResource BgColorBlock}"
+                                           WidthRequest="100"
+                                           HeightRequest="35">
 
-                    <Frame Style="{StaticResource FrameBlock}"
-                           BackgroundColor="{StaticResource BgColorBlock}"
-                           Margin="15, 0, 15, 5">
+                                        <DatePicker VerticalOptions="CenterAndExpand"
+                                                    Style="{StaticResource DatePickerRange}"
+                                                    Date="{Binding EndDateEntry}"/>
 
-                        <FlexLayout JustifyContent="SpaceBetween">
+                                    </Frame>
+                                </FlexLayout>
 
-                            <Label Text="$0"
-                                   Style="{StaticResource LabelBaseBold}"
-                                   FontSize="24"/>
+                                <Label Style="{StaticResource LabelBaseRegular}"
+                                       FontSize="18">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Out of a grand total of $"/>
+                                            <Span Text="{Binding GrandTotalLabel}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
 
-                            <Label Text="Daily Average"
-                                   Style="{StaticResource LabelBaseRegular}"
-                                   FontSize="24"/>
-
-                        </FlexLayout>
-
-                    </Frame>
-
-                    <Frame Style="{StaticResource FrameBlock}"
-                           BackgroundColor="{StaticResource BgColorBlock2}"
-                           Margin="15, 0, 15, 5">
-
-                        <Frame BackgroundColor="{StaticResource BgColorDark}" 
-                               HasShadow="False" 
-                               CornerRadius="5" 
-                               HeightRequest="200">
-                            
-                        </Frame>
-
-                    </Frame>
-
-                    <Frame Style="{StaticResource FrameBlock}"
-                           BackgroundColor="{StaticResource BgColorBlock}"
-                           Margin="15, 0, 15, 5">
-
-                        <StackLayout>
-
-                            <Label Text="Categories"
-                                   Style="{StaticResource LabelBaseBold}"
-                                   FontSize="32"/>
-
-                            <StackLayout Margin="0, 10, 0, 0">
-
-                                <Frame BackgroundColor="{StaticResource BgColorEntryRow}" 
-                                       Style="{StaticResource FrameListCard}"
-                                       Margin="0">
-
-                                        
-                                        <FlexLayout JustifyContent="SpaceBetween">
-
-                                            <Label Text="#1"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-                                            <Label Text="Category"
-                                               Style="{StaticResource LabelBaseRegular}"
-                                               FontSize="20"/>
-                                            <Label Text="$0"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-
-                                        </FlexLayout>                                        
-                                        
-                                </Frame>
-
-                                <Frame BackgroundColor="{StaticResource BgColorEntryRow}" 
-                                       Style="{StaticResource FrameListCard}"
-                                       Margin="0">
-
-
-                                    <FlexLayout JustifyContent="SpaceBetween">
-
-                                        <Label Text="#2"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-                                        <Label Text="Category"
-                                               Style="{StaticResource LabelBaseRegular}"
-                                               FontSize="20"/>
-                                        <Label Text="$0"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-
-                                    </FlexLayout>
-
-                                </Frame>
-
-                                <Frame BackgroundColor="{StaticResource BgColorEntryRow}" 
-                                       Style="{StaticResource FrameListCard}"
-                                       Margin="0">
-
-
-                                    <FlexLayout JustifyContent="SpaceBetween">
-
-                                        <Label Text="#3"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-                                        <Label Text="Category"
-                                               Style="{StaticResource LabelBaseRegular}"
-                                               FontSize="20"/>
-                                        <Label Text="$0"
-                                               Style="{StaticResource LabelBaseBold}"
-                                               FontSize="20"/>
-
-                                    </FlexLayout>
-
-                                </Frame>
-
+                                <Label Style="{StaticResource LabelBaseRegular}"
+                                       FontSize="18"
+                                       TextColor="{StaticResource BgColorDark}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Last expense on "/>
+                                            <Span Text="{Binding LastExpenseDateLabel}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                             </StackLayout>
 
-                            <Label Text="And 0 more..."
-                                   Style="{StaticResource LabelBaseRegular}"
-                                   Margin="5, 5, 0, 0"/>
+                        </Frame>
 
-                        </StackLayout>
+                        <Frame Style="{StaticResource FrameBlock}"
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               Margin="15, 0, 15, 5">
+
+                            <FlexLayout JustifyContent="SpaceBetween">
+
+                                <Label Style="{StaticResource LabelBaseBold}"
+                                       FontSize="24">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="$"/>
+                                            <Span Text="{Binding DailyAverageLabel}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label Text="Daily Average"
+                                       Style="{StaticResource LabelBaseRegular}"
+                                       FontSize="24"/>
+
+                            </FlexLayout>
+
+                        </Frame>
+
+                        <Frame Style="{StaticResource FrameBlock}"
+                               BackgroundColor="{StaticResource BgColorBlock2}"
+                               Margin="15, 0, 15, 5">
+
+                            <charts:ChartView HeightRequest="300"
+                                              Chart="{Binding LineChartView}">
+                            </charts:ChartView>
 
 
+                        </Frame>
+                        
+                        
+                        <Frame Style="{StaticResource FrameBlock}"
+                               BackgroundColor="{StaticResource BgColorBlock}"
+                               Margin="15, 0, 15, 5">
 
-                    </Frame>
+                            <StackLayout>
+
+                                <Label Text="Categories"
+                                       Style="{StaticResource LabelBaseBold}"
+                                       FontSize="32"/>
+
+                                <StackLayout HeightRequest="200">
+
+                                    <ListView x:Name="ListSummaryCategories"
+                                              ItemsSource="{Binding CategoriesList}"
+                                              HasUnevenRows="True"
+                                              IsPullToRefreshEnabled="False"
+                                              SeparatorVisibility="None"
+                                              SelectionMode="None">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout Margin="0, 10, 0, 0">
+
+                                                        <Frame BackgroundColor="{StaticResource BgColorEntryRow}"
+                                                           Style="{StaticResource FrameListCard}"
+                                                           Margin="0">
+
+
+                                                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                                                                <Label Text="{Binding Category.Name}"
+                                                                   Style="{StaticResource LabelBaseBold}"
+                                                                   FontSize="20"/>
+                                                                <StackLayout>
+
+                                                                    <Label Style="{StaticResource LabelBaseBold}"
+                                                                       FontSize="20">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="$"/>
+                                                                                <Span Text="{Binding CategoryAmount}"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                    <Label Style="{StaticResource LabelBaseRegular}"
+                                                                       FontSize="20">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span Text="{Binding CategoryRecords}"/>
+                                                                                <Span Text=" Records"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+                                                                </StackLayout>
+
+                                                            </FlexLayout>
+
+                                                        </Frame>
+
+                                                    </StackLayout>
+
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
 
                 </StackLayout>
-                
-            </StackLayout>
 
-        </ScrollView>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

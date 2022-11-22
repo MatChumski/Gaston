@@ -99,14 +99,15 @@
 
                             </Frame>
 
-                            <Button Text="▼"
+                            <Button Text="{Binding AscendingIconLabel}"
                                 CornerRadius="100"
                                 WidthRequest="40"
                                 HeightRequest="40"
                                 FontSize="20"
                                 Padding="0, 0, 0, 2"
                                 BackgroundColor="Transparent"
-                                FontFamily="SenBold"/>
+                                FontFamily="SenBold"
+                                Command="{Binding ChangeAscendingCommand}"/>
                         </FlexLayout>
 
                         <Label Style="{StaticResource LabelBaseBold}"

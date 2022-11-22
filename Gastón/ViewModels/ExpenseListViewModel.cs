@@ -21,6 +21,8 @@ namespace Gastón.ViewModels
         public string selectedSort;
         public bool ascending;
 
+        public string ascendingIcon;
+
         public string totalAmount;
 
         public List<string> categories;
@@ -94,6 +96,12 @@ namespace Gastón.ViewModels
             set { SetValue(ref this.ascending, value); }
         }
 
+        public string AscendingIconLabel
+        {
+            get { return ascendingIcon; }
+            set { SetValue(ref this.ascendingIcon, value); }
+        }
+
         public bool IsRefreshing
         {
             get { return isRefreshing; }
@@ -125,6 +133,14 @@ namespace Gastón.ViewModels
             get
             {
                 return new RelayCommand(Refresh);
+            }
+        }
+
+        public ICommand ChangeAscendingCommand
+        {
+            get
+            {
+                return new RelayCommand(ChangeAscending);
             }
         }
 
@@ -263,6 +279,22 @@ namespace Gastón.ViewModels
             SelectedCategoryEntry = lastCategory;
         }
 
+        public void ChangeAscending()
+        {
+            if (AscendingSwitch)
+            {
+                AscendingSwitch = false;
+                AscendingIconLabel = "▼";
+            }
+            else
+            {
+                AscendingSwitch = true;
+                AscendingIconLabel = "▲";
+            }
+
+            Refresh();
+        }
+
         public void OpenEditExpensePopup(ExpenseCard expenseInfo)
         {
             PopupNavigation.Instance.PushAsync(new EditExpensePopup(expenseInfo));
@@ -283,6 +315,7 @@ namespace Gastón.ViewModels
             SelectedCategoryEntry = "All";
             SelectedSortEntry = "Date";
             AscendingSwitch = false;
+            AscendingIconLabel = "▼";
 
             Refresh();
         }

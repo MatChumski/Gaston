@@ -126,6 +126,9 @@
     <PackageReference Include="EntityFramework">
       <Version>6.4.4</Version>
     </PackageReference>
+    <PackageReference Include="Microcharts.Forms">
+      <Version>0.9.5.9</Version>
+    </PackageReference>
     <PackageReference Include="MvvmLightLibs">
       <Version>5.4.1.1</Version>
     </PackageReference>

@@ -13,8 +13,8 @@
             UnselectedTabColor="White"
             >
   <!--Pages can be added as references or inline-->
-    <local:NewExpenseView Title="New expense" NavigationPage.HasNavigationBar="False"/>
-    <local:HomeView Title="Home" NavigationPage.HasNavigationBar="False"/>
-    <local:ExpenseListView Title="Expense List" NavigationPage.HasNavigationBar="False"/>
-    <local:ConfigView Title="Options" NavigationPage.HasNavigationBar="False"/>
+    <local:NewExpenseView Title="New Expense" NavigationPage.HasNavigationBar="False" IconImageSource="plus.png"/>
+    <local:HomeView Title="Home" NavigationPage.HasNavigationBar="False" IconImageSource="home.png"/>
+    <local:ExpenseListView Title="Expense List" NavigationPage.HasNavigationBar="False" IconImageSource="list.png"/>
+    <local:ConfigView Title="Settings" NavigationPage.HasNavigationBar="False" IconImageSource="config.png"/>
 </TabbedPage>
