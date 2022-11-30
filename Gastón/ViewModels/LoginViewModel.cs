@@ -60,6 +60,7 @@ namespace Gastón.ViewModels
 
         private async void LoginMethod()
         {
+            // Check empty fields
             if (string.IsNullOrEmpty(UserIdEntry) || string.IsNullOrEmpty(PasswordEntry))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Fields cannot be empty", "Ok");
@@ -69,6 +70,7 @@ namespace Gastón.ViewModels
             string query = $"SELECT * FROM UserModel";
             query += $" WHERE (username = '{UserIdEntry}' OR email = '{UserIdEntry}') AND password = '{PasswordEntry}'";
 
+            // Check if user exists
             var foundUsers = await App.Database.Query<UserModel>(query);
 
             if (foundUsers.Count <= 0)

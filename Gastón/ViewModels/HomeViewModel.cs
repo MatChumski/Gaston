@@ -28,6 +28,7 @@ namespace Gastón.ViewModels
 
         public string dailyAverage;
 
+        // Class to set the total details for each category
         public class CategoryInfo
         {
             public CategoryModel Category { get; set; }
@@ -129,6 +130,7 @@ namespace Gastón.ViewModels
 
         #region Methods
 
+        // Reload the data according to the new parameters
         public async void Refresh()
         {
             IsRefreshing = true;
@@ -140,6 +142,7 @@ namespace Gastón.ViewModels
             IsRefreshing = false;
         }
 
+        // Class to build the data for the chart
         public class DateAmount
         {
             public string Date { get; set; }
@@ -158,15 +161,19 @@ namespace Gastón.ViewModels
 
             List<string> allDates = new List<string>();
 
+            // Gets all the dates from the expense list
             foreach(ExpenseModel expense in ExpensesList)
             {
                 allDates.Add(expense.Date.ToString("d"));
             }
 
+            // Gets all the different dates from the previous list
             List<string> groupDates = allDates.Distinct().ToList();
 
             List<float> amountPerDates = new List<float>();
 
+            // Checks the individual dates, and adds to them the values
+            // of the corresponding expenses
             foreach(string date in groupDates)
             {
                 float amount = 0;
@@ -180,6 +187,7 @@ namespace Gastón.ViewModels
                 amountPerDates.Add(amount);
             }
 
+            // Creates the data list with all the dates and their amounts
             List<DateAmount> dateAmountList = new List<DateAmount>();
 
             for (int i = 0; i < groupDates.Count; i++)
@@ -187,8 +195,11 @@ namespace Gastón.ViewModels
                 dateAmountList.Add(new DateAmount(groupDates[i], amountPerDates[i]));
             }
 
+            // Reverses the list to show the latest values on the right side
+            // of the chart
             List<DateAmount> reverseList = Enumerable.Reverse(dateAmountList).ToList();
 
+            // Adds all the data to the chart
             foreach (DateAmount dateAmount in reverseList)
             {
                 chartEntries.Add(
@@ -257,6 +268,7 @@ namespace Gastón.ViewModels
 
         public async Task GetCategories()
         {
+            // Gets all the category from the expenses
             List<int> allCategoriesId = new List<int>();
 
             foreach (ExpenseModel expense in ExpensesList)
@@ -264,6 +276,7 @@ namespace Gastón.ViewModels
                 allCategoriesId.Add(expense.FkCategory);
             }
 
+            // Gets each distinct category
             List<int> categoriesId = allCategoriesId.Distinct().ToList();
 
             List<CategoryModel> categoryModels = new List<CategoryModel>();
@@ -280,6 +293,7 @@ namespace Gastón.ViewModels
                 }
             }
 
+            // Gets the data that will be put on the CategoryInfo list
             List<string> amounts = new List<string>();
             List<int> records = new List<int>();
 
@@ -299,6 +313,7 @@ namespace Gastón.ViewModels
                 records.Add(sumRecords);
             }
 
+            // Sets the data on the CategoryInfo list
             List<CategoryInfo> newCategoryInfoList = new List<CategoryInfo>();
             for (int i = 0; i < categoryModels.Count; i++)
             {

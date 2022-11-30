@@ -30,6 +30,7 @@ namespace Gastón.ViewModels
 
         public bool isRefreshing;
 
+        // Class for the expense cards that will be shown on the list
         public class ExpenseCard
         {
             public ExpenseModel Expense { get; set; }

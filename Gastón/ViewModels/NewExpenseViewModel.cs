@@ -121,12 +121,12 @@ namespace Gastón.ViewModels
             if (CategoryEntry == "No Category")
             {
                 selectedCategory = -1;
-            } else
+            } 
+            else
             {
                 var categoryRes = await App.Database.Query<CategoryModel>(sqlCategory);
 
                 selectedCategory = categoryRes[0].Id;
-
             }
 
             ExpenseModel newExpense = new ExpenseModel();
