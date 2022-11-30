@@ -259,7 +259,13 @@ namespace Gastón.ViewModels
             TotalAmountLabel = newTotalAmount.ToString("N2");
             GrandTotalLabel = newGrandTotal.ToString("N2");
 
-            LastExpenseDateLabel = resExpenses[0].Date.ToString("d");
+            if (resExpenses.Count > 0)
+            {
+                LastExpenseDateLabel = resExpenses[0].Date.ToString("d");
+            } else
+            {
+                LastExpenseDateLabel = "No expenses";
+            }
             
             DailyAverageLabel = (newTotalAmount / (EndDateEntry - StartDateEntry).Days).ToString("N2");
 
