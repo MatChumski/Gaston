@@ -5,7 +5,7 @@
              x:Class="Gastón.Views.PopUps.EditExpensePopup">
     <StackLayout>
 
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <RefreshView Command="{Binding RefreshCommand, Mode=TwoWay}" IsRefreshing="{Binding IsRefreshing}">
 
             <ScrollView>
 
@@ -37,7 +37,7 @@
                             <Label Grid.Column="0" Grid.Row="0" Text="Description" Style="{StaticResource LabelForm}"/>
                             <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                <Entry Text="{Binding NewDescriptionEntry}" 
+                                <Entry Text="{Binding NewDescriptionEntry, Mode=TwoWay}" 
                                        Placeholder="Apples, Bread..."
                                        Style="{StaticResource EntryForm}"/>
 
@@ -48,7 +48,7 @@
                             <Label Grid.Column="0" Grid.Row="1" Text="Spent" Style="{StaticResource LabelForm}"/>
                             <Frame Grid.Column="1" Grid.Row="1" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                <Entry Text="{Binding NewSpentEntry}" 
+                                <Entry Text="{Binding NewSpentEntry, Mode=TwoWay}" 
                                        Placeholder="$$$$$"
                                        Style="{StaticResource EntryForm}"/>
 
@@ -65,14 +65,14 @@
                                             x:Name="CategoryPicker"
                                             Title="Select a Category"
                                             Style="{StaticResource PickerForm}"
-                                            ItemsSource="{Binding CategoriesList}"
-                                            SelectedItem="{Binding NewCategoryEntry}"/>
+                                            ItemsSource="{Binding CategoriesList, Mode=TwoWay}"
+                                            SelectedItem="{Binding NewCategoryEntry, Mode=TwoWay}"/>
 
                                 </Frame>
 
                                 <Button Style="{StaticResource ButtonIcon}" 
                                         Text="+"
-                                        Command="{Binding NewCategoryPopupCommand}"/>
+                                        Command="{Binding NewCategoryPopupCommand, Mode=TwoWay}"/>
                             </FlexLayout>
 
                             <!-- -->
@@ -85,7 +85,7 @@
                                         x:Name="TypePicker"
                                         Title="Select a type"
                                         Style="{StaticResource PickerForm}"
-                                        SelectedItem="{Binding NewTypeEntry}">
+                                        SelectedItem="{Binding NewTypeEntry, Mode=TwoWay}">
                                     <Picker.Items>
                                         <x:String>Cash</x:String>
                                         <x:String>Transference</x:String>
@@ -103,7 +103,7 @@
                                             Grid.Row="4" 
                                             VerticalOptions="CenterAndExpand"
                                             Style="{StaticResource DatePickerForm}"
-                                            Date="{Binding NewDateEntry}"/>
+                                            Date="{Binding NewDateEntry, Mode=TwoWay}"/>
 
                             </Frame>
                         </Grid>
@@ -111,15 +111,16 @@
                         <FlexLayout Margin="0, 20, 0, 20"
                                     JustifyContent="SpaceBetween">
 
-                            <Button Text="SAVE"
-                                    Style="{StaticResource ButtonForm}"
-                                    BackgroundColor="{StaticResource BtnColorFormAccept}"
-                                    Command="{Binding EditExpenseCommand}"/>
-
                             <Button Text="CANCEL"
                                     Style="{StaticResource ButtonForm}"
                                     BackgroundColor="{StaticResource BtnColorFormCancel}"
-                                    Command="{Binding PopupReturnCommand}"/>
+                                    Command="{Binding PopupReturnCommand, Mode=TwoWay}"/>
+
+                            <Button Text="SAVE"
+                                    Style="{StaticResource ButtonForm}"
+                                    BackgroundColor="{StaticResource BtnColorFormAccept}"
+                                    Command="{Binding EditExpenseCommand, Mode=TwoWay}"/>
+
 
                         </FlexLayout>
                     </StackLayout>

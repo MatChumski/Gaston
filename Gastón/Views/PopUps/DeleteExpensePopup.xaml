@@ -27,7 +27,7 @@
                         </Grid.RowDefinitions>
 
                         <!--COLUMN 1-->
-                        <Label Text="{Binding DeletingExpense.Description}"
+                        <Label Text="{Binding DeletingExpense.Description, Mode=TwoWay}"
                                Grid.Column="0"
                                Grid.Row="0"
                                YAlign="Center"
@@ -44,12 +44,12 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="$"/>
-                                    <Span Text="{Binding AmountLabel}"/>
+                                    <Span Text="{Binding AmountLabel, Mode=TwoWay}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
 
-                        <Label Text="{Binding CategoryLabel}"
+                        <Label Text="{Binding CategoryLabel, Mode=TwoWay}"
                                Grid.Column="0"
                                Grid.Row="2"
                                YAlign="Center"
@@ -58,7 +58,7 @@
                                FontSize="20"/>
 
                         <!--COLUMN 2-->
-                        <Label Text="{Binding DeletingExpense.Date}"
+                        <Label Text="{Binding DeletingExpense.Date, Mode=TwoWay}"
                                Grid.Column="1"
                                Grid.Row="0"
                                YAlign="Center"
@@ -69,14 +69,15 @@
                     </Grid>
                 </Frame>
                 <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
-                    <Button Text="ACCEPT" 
-                            Command="{Binding DeleteExpenseCommand}"
-                            Style="{StaticResource ButtonForm}"
-                            BackgroundColor="DarkRed"/>
                     <Button Text="CANCEL" 
-                            Command="{Binding PopupReturnCommand}"
+                            Command="{Binding PopupReturnCommand, Mode=TwoWay}"
                             Style="{StaticResource ButtonForm}"
                             BackgroundColor="{StaticResource BtnColorFormCancel}"/>
+                    <Button Text="ACCEPT" 
+                            Command="{Binding DeleteExpenseCommand, Mode=TwoWay}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="DarkRed"/>
+                    
                 </FlexLayout>
             </StackLayout>
         </Frame>

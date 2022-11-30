@@ -5,6 +5,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -37,7 +38,15 @@ namespace Gastón.ViewModels
         public string SpentEntry
         {
             get { return spent; }
-            set { SetValue(ref this.spent, value); }
+            set 
+            {
+                SetValue(ref this.spent, value); 
+
+                Regex regex = new Regex("((?![0-9]).)+");
+                string newVal = regex.Replace(value, "");
+
+                SetValue(ref this.spent, newVal); 
+            }
         }
         public string CategoryEntry
         {

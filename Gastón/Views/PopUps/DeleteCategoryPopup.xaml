@@ -17,7 +17,7 @@
 
                     <StackLayout>
 
-                        <Label Text="{Binding DeletingCategory.Name}"
+                        <Label Text="{Binding DeletingCategory.Name, Mode=TwoWay}"
                                Style="{StaticResource LabelBaseBold}"
                                FontSize="22"/>
 
@@ -27,7 +27,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Assign "/>
-                                    <Span Text="{Binding Records}"/>
+                                    <Span Text="{Binding Records, Mode=TwoWay}"/>
                                     <Span Text=" records to"/>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -40,8 +40,8 @@
                                     x:Name="CategoryPicker"
                                     Title="Select a Category"
                                     Style="{StaticResource PickerForm}"
-                                    ItemsSource="{Binding CategoriesList}"
-                                    SelectedItem="{Binding SelectedCategoryEntry}">
+                                    ItemsSource="{Binding CategoriesList, Mode=TwoWay}"
+                                    SelectedItem="{Binding SelectedCategoryEntry, Mode=TwoWay}">
                             </Picker>
 
                         </Frame>
@@ -50,14 +50,15 @@
                     
                 </Frame>
                 <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
-                    <Button Text="ACCEPT" 
-                            Command="{Binding DeleteCategoryCommand}"
-                            Style="{StaticResource ButtonForm}"
-                            BackgroundColor="DarkRed"/>
                     <Button Text="CANCEL" 
-                            Command="{Binding PopupReturnCommand}"
+                            Command="{Binding PopupReturnCommand, Mode=TwoWay}"
                             Style="{StaticResource ButtonForm}"
                             BackgroundColor="{StaticResource BtnColorFormCancel}"/>
+                    <Button Text="ACCEPT" 
+                            Command="{Binding DeleteCategoryCommand, Mode=TwoWay}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="DarkRed"/>
+                    
                 </FlexLayout>
             </StackLayout>
         </Frame>

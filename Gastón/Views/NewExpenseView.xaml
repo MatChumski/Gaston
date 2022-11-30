@@ -39,7 +39,7 @@
                                     <Label Grid.Column="0" Grid.Row="0" Text="Description" Style="{StaticResource LabelForm}"/>
                                     <Frame Grid.Column="1" Grid.Row="0" Style="{StaticResource FormEntryFrame}" HorizontalOptions="CenterAndExpand">
 
-                                        <Entry Text="{Binding DescriptionEntry}" 
+                                        <Entry Text="{Binding DescriptionEntry, Mode=TwoWay}" 
                                                Placeholder="Apples, Bread..."
                                                Style="{StaticResource EntryForm}"/>
 
@@ -69,7 +69,7 @@
                                                     Title="Select a Category"
                                                     Style="{StaticResource PickerForm}"
                                                     SelectedItem="{Binding CategoryEntry, Mode=TwoWay}"
-                                                    ItemsSource="{Binding CategoriesList}">
+                                                    ItemsSource="{Binding CategoriesList, Mode=TwoWay}">
 
                                         
                                             </Picker>
@@ -78,7 +78,7 @@
 
                                         <Button Style="{StaticResource ButtonIcon}" 
                                                 Text="+"
-                                                Command="{Binding NewCategoryPopupCommand}"/>
+                                                Command="{Binding NewCategoryPopupCommand, Mode=TwoWay}"/>
                                     </FlexLayout>
 
                                     <!-- Type -->
@@ -91,7 +91,7 @@
                                                 x:Name="TypePicker"
                                                 Title="Select a type"
                                                 Style="{StaticResource PickerForm}"
-                                                SelectedItem="{Binding TypeEntry}">
+                                                SelectedItem="{Binding TypeEntry, Mode=TwoWay}">
                                             <Picker.Items>
                                                 <x:String>Cash</x:String>
                                                 <x:String>Transference</x:String>
@@ -109,7 +109,7 @@
                                                     Grid.Row="4" 
                                                     VerticalOptions="CenterAndExpand"
                                                     Style="{StaticResource DatePickerForm}"
-                                                    Date="{Binding DateEntry}"/>
+                                                    Date="{Binding DateEntry, Mode=TwoWay}"/>
 
                                     </Frame>
                                 </Grid>

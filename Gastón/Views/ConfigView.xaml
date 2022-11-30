@@ -63,7 +63,7 @@
                 <Button Text="+"
                         Style="{StaticResource ButtonIcon}"
                         WidthRequest="40"
-                        Command="{Binding NewCategoryPopupCommand}"/>
+                        Command="{Binding NewCategoryPopupCommand, Mode=TwoWay}"/>
 
             </FlexLayout>
 
@@ -85,7 +85,7 @@
                                        FontSize="20">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding NoCategoryLabel}"/>
+                                            <Span Text="{Binding NoCategoryLabel, Mode=TwoWay}"/>
                                             <Span Text=" Records with no category"/>
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -96,7 +96,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="$"/>
-                                            <Span Text="{Binding NoCategoryAmountLabel}"/>
+                                            <Span Text="{Binding NoCategoryAmountLabel, Mode=TwoWay}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -107,12 +107,12 @@
 
                         <!--List view with all the categories-->
                         <ListView x:Name="ListUserCategories"
-                                  ItemsSource="{Binding UserCategoriesInfosList}"
+                                  ItemsSource="{Binding UserCategoriesInfosList, Mode=TwoWay}"
                                   HasUnevenRows="True"
                                   IsPullToRefreshEnabled="True"
                                   SeparatorVisibility="None"
-                                  RefreshCommand="{Binding RefreshListCommand}"
-                                  IsRefreshing="{Binding IsRefreshingListBool}"
+                                  RefreshCommand="{Binding RefreshListCommand, Mode=TwoWay}"
+                                  IsRefreshing="{Binding IsRefreshingListBool, Mode=TwoWay}"
                                   SelectionMode="None">
 
                             <ListView.ItemTemplate>
@@ -205,7 +205,7 @@
                                                                 FontFamily="Icon"
                                                                 Style="{StaticResource ButtonIcon2}"
                                                                 TextColor="{StaticResource BgColorDark}"
-                                                                Command="{Binding Path=BindingContext.EditCategoryPopupCommand, Source={x:Reference ViewConfig}}"
+                                                                Command="{Binding Path=BindingContext.EditCategoryPopupCommand, Source={x:Reference ViewConfig}, Mode=TwoWay}"
                                                                 CommandParameter="{Binding .}">
                                                         </Button>
 
@@ -214,7 +214,7 @@
                                                                 FontFamily="Icon"
                                                                 Style="{StaticResource ButtonIcon2}"
                                                                 TextColor="DarkRed"
-                                                                Command="{Binding Path=BindingContext.DeleteCategoryPopupCommand, Source={x:Reference ViewConfig}}"
+                                                                Command="{Binding Path=BindingContext.DeleteCategoryPopupCommand, Source={x:Reference ViewConfig}, Mode=TwoWay}"
                                                                 CommandParameter="{Binding .}">
                                                         </Button>
 

@@ -5,7 +5,7 @@
              x:Class="Gastón.Views.HomeView">
     <ContentPage.Content>
 
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
 
             <ScrollView>
 
@@ -33,7 +33,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="$"/>
-                                            <Span Text="{Binding TotalAmountLabel}"/>
+                                            <Span Text="{Binding TotalAmountLabel, Mode=TwoWay}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -51,7 +51,8 @@
 
                                         <DatePicker VerticalOptions="CenterAndExpand"
                                                     Style="{StaticResource DatePickerRange}"
-                                                    Date="{Binding StartDateEntry}"/>
+                                                    Date="{Binding StartDateEntry, Mode=TwoWay}"
+                                                    MaximumDate="{Binding EndDateEntry, Mode=TwoWay}"/>
 
                                     </Frame>
 
@@ -67,7 +68,8 @@
 
                                         <DatePicker VerticalOptions="CenterAndExpand"
                                                     Style="{StaticResource DatePickerRange}"
-                                                    Date="{Binding EndDateEntry}"/>
+                                                    Date="{Binding EndDateEntry, Mode=TwoWay}"
+                                                    MinimumDate="{Binding StartDateEntry, Mode=TwoWay}"/>
 
                                     </Frame>
                                 </FlexLayout>
@@ -77,7 +79,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Out of a grand total of $"/>
-                                            <Span Text="{Binding GrandTotalLabel}"/>
+                                            <Span Text="{Binding GrandTotalLabel, Mode=TwoWay}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -88,7 +90,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Last expense on "/>
-                                            <Span Text="{Binding LastExpenseDateLabel}"/>
+                                            <Span Text="{Binding LastExpenseDateLabel, Mode=TwoWay}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -107,7 +109,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="$"/>
-                                            <Span Text="{Binding DailyAverageLabel}"/>
+                                            <Span Text="{Binding DailyAverageLabel, Mode=TwoWay}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -125,7 +127,7 @@
                                Margin="15, 0, 15, 5">
 
                             <charts:ChartView HeightRequest="300"
-                                              Chart="{Binding LineChartView}">
+                                              Chart="{Binding LineChartView, Mode=TwoWay}">
                             </charts:ChartView>
 
 
@@ -145,7 +147,7 @@
                                 <StackLayout HeightRequest="200">
 
                                     <ListView x:Name="ListSummaryCategories"
-                                              ItemsSource="{Binding CategoriesList}"
+                                              ItemsSource="{Binding CategoriesList, Mode=TwoWay}"
                                               HasUnevenRows="True"
                                               IsPullToRefreshEnabled="False"
                                               SeparatorVisibility="None"
@@ -162,7 +164,7 @@
 
                                                             <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
 
-                                                                <Label Text="{Binding Category.Name}"
+                                                                <Label Text="{Binding Category.Name, Mode=TwoWay}"
                                                                    Style="{StaticResource LabelBaseBold}"
                                                                    FontSize="20"/>
                                                                 <StackLayout>
@@ -172,7 +174,7 @@
                                                                         <Label.FormattedText>
                                                                             <FormattedString>
                                                                                 <Span Text="$"/>
-                                                                                <Span Text="{Binding CategoryAmount}"/>
+                                                                                <Span Text="{Binding CategoryAmount, Mode=TwoWay}"/>
                                                                             </FormattedString>
                                                                         </Label.FormattedText>
                                                                     </Label>
@@ -180,7 +182,7 @@
                                                                        FontSize="20">
                                                                         <Label.FormattedText>
                                                                             <FormattedString>
-                                                                                <Span Text="{Binding CategoryRecords}"/>
+                                                                                <Span Text="{Binding CategoryRecords, Mode=TwoWay}"/>
                                                                                 <Span Text=" Records"/>
                                                                             </FormattedString>
                                                                         </Label.FormattedText>

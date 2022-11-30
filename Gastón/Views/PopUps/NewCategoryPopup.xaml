@@ -22,14 +22,15 @@
                     </StackLayout>
                 </Frame>
                 <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                    <Button Text="CANCEL" 
+                            Command="{Binding PopupReturnCommand, Mode=TwoWay}"
+                            Style="{StaticResource ButtonForm}"
+                            BackgroundColor="{StaticResource BtnColorFormCancel}"/>
                     <Button Text="SAVE" 
-                            Command="{Binding NewCategoryCommand}"
+                            Command="{Binding NewCategoryCommand, Mode=TwoWay}"
                             Style="{StaticResource ButtonForm}"
                             BackgroundColor="{StaticResource BtnColorFormAccept}"/>
-                    <Button Text="CANCEL" 
-                            Command="{Binding PopupReturnCommand}"
-                            Style="{StaticResource ButtonForm}"
-                            BackgroundColor="{StaticResource BtnColorFormCancel}"/>                    
+                                   
                 </FlexLayout>              
             </StackLayout>
         </Frame>

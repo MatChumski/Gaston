@@ -24,34 +24,34 @@
                         <FlexLayout Direction="Row" AlignItems="Center" Margin="5, 0, 0, 0">
 
                             <Label Text="From"
-                               Style="{StaticResource LabelOptions}"
-                               FontSize="20"/>
+                                   Style="{StaticResource LabelOptions}"
+                                   FontSize="20"/>
 
                             <Frame Style="{StaticResource FrameEntryOptions}"
-                               BackgroundColor="{StaticResource BgColorBlock}"
-                               WidthRequest="100"
-                               HeightRequest="35">
+                                   BackgroundColor="{StaticResource BgColorBlock}"
+                                   WidthRequest="100"
+                                   HeightRequest="35">
 
-                                <DatePicker 
-                                VerticalOptions="CenterAndExpand"
-                                Style="{StaticResource DatePickerRange}"
-                                Date="{Binding StartDateEntry}"/>
+                                <DatePicker VerticalOptions="CenterAndExpand"
+                                            Style="{StaticResource DatePickerRange}"
+                                            Date="{Binding StartDateEntry, Mode=TwoWay}"
+                                            MaximumDate="{Binding EndDateEntry, Mode=TwoWay}"/>
 
                             </Frame>
 
                             <Label Text="to"
-                               Style="{StaticResource LabelOptions}"
-                               FontSize="20"/>
+                                   Style="{StaticResource LabelOptions}"
+                                   FontSize="20"/>
 
                             <Frame Style="{StaticResource FrameEntryOptions}" 
-                               BackgroundColor="{StaticResource BgColorBlock}"
-                               WidthRequest="100"
-                               HeightRequest="35">
+                                   BackgroundColor="{StaticResource BgColorBlock}"
+                                   WidthRequest="100"
+                                   HeightRequest="35">
 
-                                <DatePicker 
-                                VerticalOptions="CenterAndExpand"
-                                Style="{StaticResource DatePickerRange}"
-                                Date="{Binding EndDateEntry}"/>
+                                <DatePicker VerticalOptions="CenterAndExpand"
+                                            Style="{StaticResource DatePickerRange}"
+                                            Date="{Binding EndDateEntry, Mode=TwoWay}"
+                                            MinimumDate="{Binding StartDateEntry, Mode=TwoWay}"/>
 
                             </Frame>
                         </FlexLayout>
@@ -60,37 +60,37 @@
                         <FlexLayout Direction="Row" AlignItems="Center" Margin="5, 0, 0, 0">
 
                             <Label Text="Category"
-                               Style="{StaticResource LabelOptions}"/>
+                                   Style="{StaticResource LabelOptions}"/>
 
                             <Frame Style="{StaticResource FrameEntryOptions}"
-                               BackgroundColor="{StaticResource BgColorBlock}"
-                               WidthRequest="65"
-                               HeightRequest="35">
+                                   BackgroundColor="{StaticResource BgColorBlock}"
+                                   WidthRequest="65"
+                                   HeightRequest="35">
 
                                 <Picker x:Name="TypePicker"
-                                    Title="Select a type"
-                                    Style="{StaticResource PickerRange}"
-                                    SelectedItem="{Binding SelectedCategoryEntry}"
-                                    FontSize="14"
-                                    ItemsSource="{Binding CategoriesList}">
+                                        Title="Select a type"
+                                        Style="{StaticResource PickerRange}"
+                                        SelectedItem="{Binding SelectedCategoryEntry, Mode=TwoWay}"
+                                        FontSize="14"
+                                        ItemsSource="{Binding CategoriesList, Mode=TwoWay}">
                                 </Picker>
 
                             </Frame>
 
                             <Label Text="Order by"
-                               Style="{StaticResource LabelOptions}"/>
+                                   Style="{StaticResource LabelOptions}"/>
 
                             <Frame Style="{StaticResource FrameEntryOptions}" 
-                               BackgroundColor="{StaticResource BgColorBlock}"
-                               WidthRequest="65"
-                               HeightRequest="35">
+                                   BackgroundColor="{StaticResource BgColorBlock}"
+                                   WidthRequest="65"
+                                   HeightRequest="35">
 
                                 <Picker x:Name="SortingPicker"
-                                    Title="Select a sorting parameter"
-                                    Style="{StaticResource PickerRange}"
-                                    SelectedItem="{Binding SelectedSortEntry}"
-                                    FontSize="14"
-                                    SelectedIndex="1">
+                                        Title="Select a sorting parameter"
+                                        Style="{StaticResource PickerRange}"
+                                        SelectedItem="{Binding SelectedSortEntry, Mode=TwoWay}"
+                                        FontSize="14"
+                                        SelectedIndex="1">
                                     <Picker.Items>
                                         <x:String>Date</x:String>
                                         <x:String>Amount</x:String>
@@ -99,25 +99,25 @@
 
                             </Frame>
 
-                            <Button Text="{Binding AscendingIconLabel}"
-                                CornerRadius="100"
-                                WidthRequest="40"
-                                HeightRequest="40"
-                                FontSize="20"
-                                Padding="0, 0, 0, 2"
-                                BackgroundColor="Transparent"
-                                FontFamily="SenBold"
-                                Command="{Binding ChangeAscendingCommand}"/>
+                            <Button Text="{Binding AscendingIconLabel, Mode=TwoWay}"
+                                    CornerRadius="100"
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    FontSize="20"
+                                    Padding="0, 0, 0, 2"
+                                    BackgroundColor="Transparent"
+                                    FontFamily="SenBold"
+                                    Command="{Binding ChangeAscendingCommand, Mode=TwoWay}"/>
                         </FlexLayout>
 
                         <Label Style="{StaticResource LabelBaseBold}"
-                           FontSize="32"
-                           Margin="15, 5, 15, 5">
+                               FontSize="32"
+                               Margin="15, 5, 15, 5">
 
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="$"/>
-                                    <Span Text="{Binding TotalAmountLabel}"/>
+                                    <Span Text="{Binding TotalAmountLabel, Mode=TwoWay}"/>
                                 </FormattedString>
                             </Label.FormattedText>
 
@@ -126,10 +126,10 @@
                     </StackLayout>
 
                     <ListView x:Name="ListExpenses"
-                          ItemsSource="{Binding ExpensesList}"
-                          HasUnevenRows="True"
-                          IsPullToRefreshEnabled="False"
-                          SeparatorVisibility="None">
+                              ItemsSource="{Binding ExpensesList, Mode=TwoWay}"
+                              HasUnevenRows="True"
+                              IsPullToRefreshEnabled="False"
+                              SeparatorVisibility="None">
 
                         <ListView.ItemTemplate>
 
@@ -140,7 +140,7 @@
                                     <StackLayout>
 
                                         <Frame BackgroundColor="{StaticResource BgColorBlock}" 
-                                           Style="{StaticResource FrameListCard}">
+                                               Style="{StaticResource FrameListCard}">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="1*"/>
@@ -153,7 +153,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <!--COLUMN 1-->
-                                                <Label Text="{Binding Expense.Description}"
+                                                <Label Text="{Binding Expense.Description, Mode=TwoWay}"
                                                    Grid.Column="0"
                                                    Grid.Row="0"
                                                    YAlign="Center"
@@ -170,12 +170,12 @@
                                                     <Label.FormattedText>
                                                         <FormattedString>
                                                             <Span Text="$"/>
-                                                            <Span Text="{Binding Amount}"/>
+                                                            <Span Text="{Binding Amount, Mode=TwoWay}"/>
                                                         </FormattedString>
                                                     </Label.FormattedText>
                                                 </Label>
 
-                                                <Label Text="{Binding Category}"
+                                                <Label Text="{Binding Category, Mode=TwoWay}"
                                                    Grid.Column="0"
                                                    Grid.Row="2"
                                                    YAlign="Center"
@@ -184,7 +184,7 @@
                                                    FontSize="22"/>
 
                                                 <!--COLUMN 2-->
-                                                <Label Text="{Binding Expense.Date}"
+                                                <Label Text="{Binding Expense.Date, Mode=TwoWay}"
                                                    Grid.Column="1"
                                                    Grid.Row="0"
                                                    YAlign="Center"
@@ -202,14 +202,14 @@
                                                             FontFamily="Icon"
                                                             TextColor="{StaticResource BgColorDark}"
                                                             Style="{StaticResource ButtonIcon2}"
-                                                            Command="{Binding Path=BindingContext.EditExpensePopupCommand, Source={x:Reference ViewList}}"
+                                                            Command="{Binding Path=BindingContext.EditExpensePopupCommand, Source={x:Reference ViewList}, Mode=TwoWay}"
                                                             CommandParameter="{Binding .}"/>
 
                                                     <Button Text="{x:Static Font_Icons:Icons.Cancel}" 
                                                             FontFamily="Icon"
                                                             TextColor="DarkRed"
                                                             Style="{StaticResource ButtonIcon2}"
-                                                            Command="{Binding Path=BindingContext.DeleteExpensePopupCommand, Source={x:Reference ViewList}}"
+                                                            Command="{Binding Path=BindingContext.DeleteExpensePopupCommand, Source={x:Reference ViewList}, Mode=TwoWay}"
                                                             CommandParameter="{Binding .}"/>
 
                                                 </FlexLayout>

@@ -34,6 +34,11 @@
     <Color x:Key="EntryColorMain">#516F99</Color>
     <Color x:Key="EntryTextAux">#767676</Color>
 
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource BgColorMain}" />
+        <Setter Property="BarTextColor" Value="White" />
+    </Style>
+
     <!-- MAIN BUTTON -->
     <Style TargetType="Button" x:Key="BtnMain">
         <Setter Property="BackgroundColor" Value="{StaticResource BtnColorMain}"/>
