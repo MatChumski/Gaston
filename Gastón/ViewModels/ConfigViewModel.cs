@@ -158,43 +158,36 @@ namespace Gastón.ViewModels
             List<int> records = new List<int>();
             List<float> amounts = new List<float>();
 
-            if (categories.Count > 0)
+            // Gets the details of the category's associated expenses
+            foreach (CategoryModel category in categories)
             {
-                // Gets the details of the category's associated expenses
-                foreach (CategoryModel category in categories)
+                string sql2 = "SELECT * FROM ExpenseModel";
+                sql2 += $" WHERE FkCategory = '{category.Id}'";
+                sql2 += $" AND FkUser = '{App.ActiveUser.Id}'";
+
+                List<ExpenseModel> expenses = await App.Database.Query<ExpenseModel>(sql2);
+
+                records.Add(expenses.Count);
+
+                float amount = 0;
+                foreach (ExpenseModel expense in expenses)
                 {
-                    string sql2 = "SELECT * FROM ExpenseModel";
-                    sql2 += $" WHERE FkCategory = '{category.Id}'";
-                    sql2 += $" AND FkUser = '{App.ActiveUser.Id}'";
-
-                    List<ExpenseModel> expenses = await App.Database.Query<ExpenseModel>(sql2);
-
-                    records.Add(expenses.Count);
-
-                    float amount = 0;
-                    foreach (ExpenseModel expense in expenses)
-                    {
-                        amount += expense.Amount;
-                    }
-
-                    amounts.Add(amount);
+                    amount += expense.Amount;
                 }
 
-                // Adds all the info into the list
-
-                List<UserCategoriesInfo> infosList = new List<UserCategoriesInfo>();
-                for (int i = 0; i < categories.Count; i++)
-                {
-                    infosList.Add(new UserCategoriesInfo(categories[i], records[i], amounts[i].ToString("N2")));
-                }
-                
-                UserCategoriesInfosList = infosList;
+                amounts.Add(amount);
             }
-            else
+
+            // Adds all the info into the list
+
+            List<UserCategoriesInfo> infosList = new List<UserCategoriesInfo>();
+            for (int i = 0; i < categories.Count; i++)
             {
-                UserCategoriesInfosList = null;
+                infosList.Add(new UserCategoriesInfo(categories[i], records[i], amounts[i].ToString("N2")));
             }
 
+
+            UserCategoriesInfosList = infosList;
 
             IsRefreshingListBool = false;
         }
@@ -212,7 +205,7 @@ namespace Gastón.ViewModels
 
             float amount = 0;
 
-            foreach(ExpenseModel expense in res)
+            foreach (ExpenseModel expense in res)
             {
                 amount += expense.Amount;
             }

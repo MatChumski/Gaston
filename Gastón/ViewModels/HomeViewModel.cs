@@ -279,7 +279,10 @@ namespace Gastón.ViewModels
 
             foreach (ExpenseModel expense in ExpensesList)
             {
-                allCategoriesId.Add(expense.FkCategory);
+                if (expense.FkCategory > 0)
+                {
+                    allCategoriesId.Add(expense.FkCategory);
+                }
             }
 
             // Gets each distinct category

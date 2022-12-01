@@ -90,6 +90,9 @@ namespace Gastón.ViewModels
                 var selCatRes = await App.Database.Query<CategoryModel>(sqlSelectedCategory);
 
                 selCat = selCatRes[0];
+            } else
+            {
+                selCat.Id = -1;
             }
 
             string sqlExpenses = $"SELECT * FROM ExpenseModel";
